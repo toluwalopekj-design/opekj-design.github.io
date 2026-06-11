@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+html_code = '''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applause Property — Premium Real Estate in Asaba & Beyond</title>
+    <title>Applause Property — Premium Real Estate in Nigeria</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -26,11 +26,45 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 3px; }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
 
         /* Navbar */
         .navbar {
@@ -47,6 +81,7 @@
         .navbar.scrolled {
             background: rgba(10, 31, 10, 0.95);
             backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
         }
         .logo {
             font-size: 1.4rem;
@@ -65,6 +100,8 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .nav-links a:hover { color: var(--text-primary); }
         .mobile-menu-btn {
@@ -81,33 +118,69 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             padding: 7rem 5% 3rem;
             position: relative;
+            overflow: hidden;
         }
-        .hero-content { max-width: 550px; }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .hero-bg img.active {
+            opacity: 0.25;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10,31,10,0.7) 0%, rgba(10,31,10,0.5) 50%, var(--bg-primary) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
         }
+        .hero h1 .accent {
+            color: var(--accent);
+        }
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .btn {
-            padding: 0.9rem 1.8rem;
-            border-radius: 10px;
+            padding: 1rem 2.2rem;
+            border-radius: 12px;
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             border: none;
-            margin-right: 0.8rem;
-            margin-bottom: 0.5rem;
+            margin: 0.3rem;
             transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .btn-primary {
             background: var(--accent);
@@ -116,6 +189,7 @@
         .btn-primary:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(200,245,66,0.2);
         }
         .btn-outline {
             background: transparent;
@@ -127,20 +201,120 @@
             color: var(--bg-primary);
         }
 
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .float-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+        .instagram-btn {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
         /* Sections */
-        .section { padding: 5rem 5%; }
+        .section { padding: 6rem 5%; }
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         .section-header h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 0.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
         }
         .section-header p {
             color: var(--text-secondary);
             max-width: 500px;
             margin: 0 auto;
+            font-size: 1.05rem;
+        }
+        .section-tag {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Process Section */
+        .process {
+            background: var(--bg-secondary);
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+        .process-step:last-child::after { display: none; }
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+        .process-step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         /* Properties */
@@ -153,53 +327,87 @@
         }
         .property-card {
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
+            transition: all 0.4s;
         }
         .property-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: rgba(200, 245, 66, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         .property-image {
-            height: 240px;
+            height: 220px;
             overflow: hidden;
+            position: relative;
         }
         .property-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.6s;
         }
         .property-card:hover .property-image img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
-        .property-info { padding: 1.2rem; }
+        .property-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+        .property-info { padding: 1.5rem; }
         .property-location {
             font-size: 0.8rem;
             color: var(--text-muted);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .property-title {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
         .property-doc {
             display: inline-block;
-            padding: 0.2rem 0.7rem;
+            padding: 0.25rem 0.8rem;
             background: var(--bg-primary);
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--accent);
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .property-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .property-meta svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+        }
+        .property-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
         }
         .property-price {
             font-size: 1.3rem;
@@ -213,6 +421,22 @@
             margin-left: 0.5rem;
             font-weight: 400;
         }
+        .property-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .property-btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
 
         /* About */
         .about {
@@ -221,86 +445,212 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            max-width: 1000px;
+            gap: 4rem;
+            max-width: 1100px;
             margin: 0 auto;
             align-items: center;
         }
         .about-content h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .about-content h2 .accent {
+            color: var(--accent);
         }
         .about-content p {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .about-image {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Contact */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            max-width: 1000px;
+            gap: 4rem;
+            max-width: 1100px;
             margin: 0 auto;
+            align-items: start;
+        }
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .contact-info > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .contact-method-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            border: 1px solid var(--border);
+        }
+        .contact-method-text h4 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        .contact-method-text p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
         .contact-form {
             background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
+            padding: 2.5rem;
+            border-radius: 24px;
             border: 1px solid var(--border);
         }
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         .form-group label {
             display: block;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
             font-size: 0.85rem;
+            font-weight: 500;
             color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem;
+            padding: 1rem;
             background: var(--bg-primary);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 12px;
             color: #fff;
             font-size: 1rem;
             font-family: inherit;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(200, 245, 66, 0.1);
         }
         .form-group textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
-        .contact-info p {
-            color: var(--text-secondary);
-            margin-bottom: 0.8rem;
+        .form-group input:invalid:not(:placeholder-shown),
+        .form-group textarea:invalid:not(:placeholder-shown) {
+            border-color: #e74c3c;
         }
-        .contact-info .phone {
-            color: var(--accent);
+        .form-error {
+            color: #e74c3c;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        .form-group input:invalid:not(:placeholder-shown) + .form-error,
+        .form-group textarea:invalid:not(:placeholder-shown) + .form-error {
+            display: block;
+        }
+
+        /* FAQ Placeholder */
+        .faq-placeholder {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 2px dashed var(--border);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .faq-placeholder h3 {
             font-size: 1.3rem;
-            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .faq-placeholder p {
+            color: var(--text-secondary);
         }
 
         /* Footer */
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
-            padding: 3rem 5% 1.5rem;
+            padding: 4rem 5% 2rem;
             text-align: center;
         }
-        .footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 1rem;
+        .footer .logo {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            font-size: 1.8rem;
         }
         .footer-address {
             color: var(--text-secondary);
             max-width: 500px;
-            margin: 1rem auto;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            margin: 0 auto 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .footer-phone {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         /* Mobile */
@@ -309,214 +659,27 @@
             .mobile-menu-btn { display: block; }
             .about-grid, .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            .hero { text-align: center; padding-top: 5rem; }
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            .process-step::after { display: none; }
+            .hero { padding-top: 5rem; }
             .properties-grid { grid-template-columns: 1fr; }
+            .floating-buttons {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar" id="navbar">
-        <a href="#" class="logo">applause-property</a>
-        <ul class="nav-links">
-            <li><a href="#home">HOME</a></li>
-            <li><a href="#properties">PROPERTIES</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
-        <button class="mobile-menu-btn">☰</button>
-    </nav>
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Delivering Comfort, One Property at a Time.</h1>
-            <p>Explore our premium real estate listings in Asaba and beyond. Secure your future with Applause Property.</p>
-            <a href="#contact" class="btn btn-primary">BOOK INSPECTION</a>
-            <a href="#properties" class="btn btn-outline">VIEW ALL ESTATES</a>
-        </div>
-    </section>
-
-    <section class="section" id="properties">
-        <div class="section-header">
-            <h2>FEATURED PROPERTIES</h2>
-            <p>Premium estates with verified documentation across Asaba and Ibusa.</p>
-        </div>
-        <div class="properties-grid">
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="APPLAUSE COURT">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 BEHIND IMMIGRATION, IBUSA</div>
-                    <h3 class="property-title">APPLAUSE COURT</h3>
-                    <span class="property-doc">C OF O</span>
-                    <div class="property-price">₦45M <span class="actual">₦50M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="IBUSA VILLA">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 ADMIRALTY DRIVE, IBUSA</div>
-                    <h3 class="property-title">IBUSA VILLA</h3>
-                    <span class="property-doc">C OF O</span>
-                    <div class="property-price">₦28.5M <span class="actual">₦33M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="DIVINE CITY ESTATE">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 ISIEKE UMUEKEA, IBUSA</div>
-                    <h3 class="property-title">DIVINE CITY ESTATE</h3>
-                    <span class="property-doc">REGISTERED SURVEY & DEED OF ASSIGNMENT</span>
-                    <div class="property-price">₦6M <span class="actual">₦10M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=600&q=80" alt="ROYAL CITY ESTATE">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 ISTUA OKAFOR STREET, IBUSA</div>
-                    <h3 class="property-title">ROYAL CITY ESTATE</h3>
-                    <span class="property-doc">C OF O</span>
-                    <div class="property-price">₦22.5M <span class="actual">₦33M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="TREASURE PARK">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 OTULU, ASABA</div>
-                    <h3 class="property-title">TREASURE PARK</h3>
-                    <span class="property-doc">C OF O</span>
-                    <div class="property-price">₦10M <span class="actual">₦15M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="DE ROYAL COURT">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 UMUEHEA, IBUSA</div>
-                    <h3 class="property-title">DE ROYAL COURT</h3>
-                    <span class="property-doc">C OF O</span>
-                    <div class="property-price">₦20M <span class="actual">₦24M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt="DIVINE HILLTOP">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 OGIDIGBA UMUIDI RD, IBUSA</div>
-                    <h3 class="property-title">DIVINE HILLTOP</h3>
-                    <span class="property-doc">REGISTERED SURVEY & DEED OF ASSIGNMENT</span>
-                    <div class="property-price">₦8M <span class="actual">₦12M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=80" alt="DIVINE ROYAL">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 ZION ROAD, IBUSA</div>
-                    <h3 class="property-title">DIVINE ROYAL</h3>
-                    <span class="property-doc">C OF O</span>
-                    <div class="property-price">₦25M <span class="actual">₦30M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="AMAEZE ESTATE">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 IBUSA</div>
-                    <h3 class="property-title">AMAEZE ESTATE</h3>
-                    <span class="property-doc">REGISTERED SURVEY & DEED OF ASSIGNMENT</span>
-                    <div class="property-price">₦18.5M <span class="actual">₦22.5M</span></div>
-                </div>
-            </div>
-            <div class="property-card">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="IBUSA AMAKA ESTATE">
-                </div>
-                <div class="property-info">
-                    <div class="property-location">📍 OGIDIGBA UMUIDI RD, IBUSA</div>
-                    <h3 class="property-title">IBUSA AMAKA ESTATE</h3>
-                    <span class="property-doc">C OF O</span>
-                    <div class="property-price">₦19.5M <span class="actual">₦25M</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section about" id="about">
-        <div class="about-grid">
-            <div class="about-content">
-                <h2>YOUR TRUSTED PARTNER IN REAL ESTATE</h2>
-                <p>Applause Property is a leading real estate company based in Asaba, Delta State, Nigeria. We specialize in connecting discerning buyers with premium properties that offer both comfort and long-term value.</p>
-                <p>Every property in our portfolio is thoroughly verified and comes with complete documentation.</p>
-            </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="About" style="width:100%;border-radius:16px;">
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="contact">
-        <div class="section-header">
-            <h2>BOOK AN INSPECTION</h2>
-            <p>Ready to find your perfect property? Reach out to us.</p>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <p>Our team will guide you through every step of the process.</p>
-                <p>📍 OBINNA JUNCTION, BESIDE BIGGY KITCHEN,<br>BY MIDWIFERY MARKET, OFF OKPANAM ROAD, ASABA</p>
-                <p class="phone">📞 +2349164961193</p>
-                <p style="color:var(--text-secondary);">✉️ infoapplausepro@gmail.com</p>
-            </div>
-            <div class="contact-form">
-                <form onsubmit="event.preventDefault();alert('Thank you! We will contact you shortly.');this.reset();">
-                    <div class="form-group">
-                        <label>FULL NAME</label>
-                        <input type="text" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>EMAIL</label>
-                        <input type="email" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>PHONE</label>
-                        <input type="tel" placeholder="+234 800 000 0000" required>
-                    </div>
-                    <div class="form-group">
-                        <label>MESSAGE</label>
-                        <textarea placeholder="Tell us about your property needs..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;">SEND MESSAGE</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <a href="#" class="logo">applause-property</a>
-        <p class="footer-address">OBINNA JUNCTION, BESIDE BIGGY KITCHEN, BY MIDWIFERY MARKET, OFF OKPANAM ROAD, ASABA</p>
-        <p>📞 +2349164961193</p>
-        <p>© 2026 APPLAUSE PROPERTY. ALL RIGHTS RESERVED.</p>
-    </footer>
-
-    <script>
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
-
-</body>
-</html>
+    <!-- Navigation -->
+    <nav class=

@@ -67,7 +67,7 @@
             cursor: pointer;
         }
 
-        /* Hero */
+        /* Hero - FIXED: Darker overlay, always visible text */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -76,25 +76,38 @@
             text-align: center;
             padding: 6rem 5% 3rem;
             position: relative;
-            background: linear-gradient(rgba(10,31,10,0.85), rgba(10,31,10,0.7)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
+            background: 
+                linear-gradient(rgba(10,31,10,0.92), rgba(10,31,10,0.85)),
+                url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
             background-size: cover;
             background-position: center;
         }
-        .hero-content { max-width: 700px; position: relative; z-index: 2; }
+        .hero-content { 
+            max-width: 700px; 
+            position: relative; 
+            z-index: 2; 
+        }
         .hero h1 {
             font-size: clamp(2.2rem, 5vw, 4rem);
             font-weight: 700;
             line-height: 1.15;
             margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
-        .hero h1 span { color: #c8f542; }
+        .hero h1 span { 
+            color: #c8f542; 
+            display: block;
+            margin-top: 0.3rem;
+        }
         .hero p {
             font-size: 1.1rem;
-            color: #a3c9a3;
+            color: #c8f542;
             margin-bottom: 2rem;
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 500;
         }
         .btn {
             padding: 0.9rem 2rem;
@@ -489,18 +502,18 @@
     <nav class="navbar">
         <a href="#" class="logo">applause-property</a>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#properties">Properties</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#process">PROCESS</a></li>
+            <li><a href="#properties">PROPERTIES</a></li>
+            <li><a href="#about">ABOUT</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">CONTACT</a></li>
         </ul>
         <button class="mobile-menu-btn">☰</button>
     </nav>
 
     <section class="hero" id="home">
-        <div class="hero-content fade-in">
+        <div class="hero-content">
             <h1>Delivering Comfort,<br><span>One Property at a Time.</span></h1>
             <p>Explore our premium real estate listings across Nigeria. Secure your future with Applause Property.</p>
             <a href="#contact" class="btn btn-primary">Book Inspection</a>
@@ -591,8 +604,4 @@
                 <div class="property-info">
                     <div class="property-loc">ISIEKE UMUEKEA, IBUSA</div>
                     <h3 class="property-title">DIVINE CITY ESTATE</h3>
-                    <span class="property-doc">REGISTERED SURVEY & DEED</span>
-                    <div class="property-size">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                        464 SQM
-                    </div> 
+                    <span class="property-doc">REGISTERED S

@@ -16,17 +16,6 @@
             line-height: 1.6;
         }
 
-        /* Scroll Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s ease;
-        }
-        .fade-in.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Navbar */
         .navbar {
             position: fixed;
@@ -58,16 +47,64 @@
             text-transform: uppercase;
         }
         .nav-links a:hover { color: #fff; }
+
+        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
+            background: none;
+            border: none;
+            color: #c8f542;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .mobile-nav {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #0d260d;
+            z-index: 999;
+            padding: 5rem 2rem 2rem;
+            transition: right 0.3s ease;
+            border-left: 1px solid #1a3d1a;
+        }
+        .mobile-nav.active { right: 0; }
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 998;
+            display: none;
+        }
+        .mobile-nav-overlay.active { display: block; }
+        .mobile-nav-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
             background: none;
             border: none;
             color: #fff;
             font-size: 1.5rem;
             cursor: pointer;
         }
+        .mobile-nav-links {
+            list-style: none;
+        }
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #1a3d1a;
+            padding-bottom: 1rem;
+        }
+        .mobile-nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
 
-        /* Hero - FIXED: Darker overlay, always visible text */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -75,31 +112,19 @@
             justify-content: center;
             text-align: center;
             padding: 6rem 5% 3rem;
-            position: relative;
-            background: 
-                linear-gradient(rgba(10,31,10,0.92), rgba(10,31,10,0.85)),
-                url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
+            background: linear-gradient(rgba(10,31,10,0.9), rgba(10,31,10,0.8)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
             background-size: cover;
             background-position: center;
         }
-        .hero-content { 
-            max-width: 700px; 
-            position: relative; 
-            z-index: 2; 
-        }
+        .hero-content { max-width: 700px; }
         .hero h1 {
             font-size: clamp(2.2rem, 5vw, 4rem);
             font-weight: 700;
             line-height: 1.15;
             margin-bottom: 1.5rem;
             color: #ffffff;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
-        .hero h1 span { 
-            color: #c8f542; 
-            display: block;
-            margin-top: 0.3rem;
-        }
+        .hero h1 span { color: #c8f542; display: block; margin-top: 0.3rem; }
         .hero p {
             font-size: 1.1rem;
             color: #c8f542;
@@ -126,26 +151,20 @@
             background: #c8f542;
             color: #0a1f0a;
         }
-        .btn-primary:hover {
-            background: #b3e639;
-            transform: translateY(-2px);
-        }
+        .btn-primary:hover { background: #b3e639; transform: translateY(-2px); }
         .btn-outline {
             background: transparent;
             color: #c8f542;
             border: 2px solid #c8f542;
         }
-        .btn-outline:hover {
-            background: #c8f542;
-            color: #0a1f0a;
-        }
+        .btn-outline:hover { background: #c8f542; color: #0a1f0a; }
 
         /* Floating Buttons */
         .float-btns {
             position: fixed;
             bottom: 1.5rem;
             right: 1.5rem;
-            z-index: 999;
+            z-index: 997;
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
@@ -166,7 +185,7 @@
         .wa-btn { background: #25D366; color: white; }
         .ig-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366); color: white; }
 
-        /* Sections */
+        /* Sections - NO ANIMATION, ALWAYS VISIBLE */
         .section { padding: 5rem 5%; }
         .section-header {
             text-align: center;
@@ -222,14 +241,8 @@
             font-weight: 700;
             margin: 0 auto 1rem;
         }
-        .process-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .process-card p {
-            color: #a3c9a3;
-            font-size: 0.9rem;
-        }
+        .process-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .process-card p { color: #a3c9a3; font-size: 0.9rem; }
 
         /* Properties */
         .properties-grid {
@@ -244,26 +257,16 @@
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid #1a3d1a;
-            transition: all 0.3s;
-        }
-        .property-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(200,245,66,0.3);
         }
         .property-img {
             height: 200px;
             overflow: hidden;
             position: relative;
         }
-        .property-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .property-img img { width: 100%; height: 100%; object-fit: cover; }
         .property-badge {
             position: absolute;
-            top: 0.8rem;
-            left: 0.8rem;
+            top: 0.8rem; left: 0.8rem;
             padding: 0.2rem 0.7rem;
             background: #c8f542;
             color: #0a1f0a;
@@ -333,10 +336,7 @@
             cursor: pointer;
             text-transform: uppercase;
         }
-        .property-btn:hover {
-            background: #c8f542;
-            color: #0a1f0a;
-        }
+        .property-btn:hover { background: #c8f542; color: #0a1f0a; }
 
         /* About */
         .about { background: #0d260d; }
@@ -354,17 +354,10 @@
             line-height: 1.3;
         }
         .about-content h2 span { color: #c8f542; }
-        .about-content p {
-            color: #a3c9a3;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        .about-img img {
-            width: 100%;
-            border-radius: 16px;
-        }
+        .about-content p { color: #a3c9a3; margin-bottom: 1rem; font-size: 1rem; }
+        .about-img img { width: 100%; border-radius: 16px; }
 
-        /* FAQ Placeholder */
+        /* FAQ */
         .faq-box {
             text-align: center;
             padding: 3rem 2rem;
@@ -386,10 +379,6 @@
             margin: 0 auto;
         }
         .contact-info h2 { margin-bottom: 1rem; }
-        .contact-info > p {
-            color: #a3c9a3;
-            margin-bottom: 1.5rem;
-        }
         .contact-item {
             display: flex;
             align-items: flex-start;
@@ -397,8 +386,7 @@
             margin-bottom: 1rem;
         }
         .contact-item .icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background: #143214;
             border-radius: 10px;
             display: flex;
@@ -435,14 +423,8 @@
             font-family: inherit;
         }
         .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #c8f542;
-        }
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
+        .form-group textarea:focus { outline: none; border-color: #c8f542; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
 
         /* Footer */
         .footer {
@@ -461,8 +443,7 @@
             margin: 1.5rem 0;
         }
         .footer-social a {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background: #143214;
             border: 1px solid #1a3d1a;
             border-radius: 50%;
@@ -473,11 +454,7 @@
             text-decoration: none;
             font-size: 1.1rem;
         }
-        .footer-social a:hover {
-            background: #c8f542;
-            color: #0a1f0a;
-            border-color: #c8f542;
-        }
+        .footer-social a:hover { background: #c8f542; color: #0a1f0a; border-color: #c8f542; }
         .footer-bottom {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
@@ -496,6 +473,7 @@
             .hero { padding-top: 5rem; }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -509,8 +487,22 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">CONTACT</a></li>
         </ul>
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleMenu()"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMenu()">✕</button>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" onclick="toggleMenu()">HOME</a></li>
+            <li><a href="#process" onclick="toggleMenu()">PROCESS</a></li>
+            <li><a href="#properties" onclick="toggleMenu()">PROPERTIES</a></li>
+            <li><a href="#about" onclick="toggleMenu()">ABOUT</a></li>
+            <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">CONTACT</a></li>
+        </ul>
+    </div>
 
     <section class="hero" id="home">
         <div class="hero-content">
@@ -527,23 +519,23 @@
     </div>
 
     <section class="section process" id="process">
-        <div class="section-header fade-in">
+        <div class="section-header">
             <span class="tag">How It Works</span>
             <h2>OUR BUYING PROCESS</h2>
             <p>Three simple steps to owning your dream property.</p>
         </div>
         <div class="process-grid">
-            <div class="process-card fade-in">
+            <div class="process-card">
                 <div class="process-num">1</div>
                 <h3>BOOK INSPECTION</h3>
                 <p>Reach out via WhatsApp, Instagram, or our contact form to schedule.</p>
             </div>
-            <div class="process-card fade-in">
+            <div class="process-card">
                 <div class="process-num">2</div>
                 <h3>FREE SITE INSPECTION</h3>
                 <p>Visit the estate with our team for a complimentary guided tour.</p>
             </div>
-            <div class="process-card fade-in">
+            <div class="process-card">
                 <div class="process-num">3</div>
                 <h3>MAKE PAYMENT</h3>
                 <p>Complete purchase with secure payment and receive all documents.</p>
@@ -552,13 +544,13 @@
     </section>
 
     <section class="section" id="properties">
-        <div class="section-header fade-in">
+        <div class="section-header">
             <span class="tag">Our Listings</span>
             <h2>FEATURED PROPERTIES</h2>
             <p>Premium estates with verified documentation.</p>
         </div>
         <div class="properties-grid">
-            <div class="property-card fade-in">
+            <div class="property-card">
                 <div class="property-img">
                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="APPLAUSE COURT">
                     <span class="property-badge">C of O</span>
@@ -577,7 +569,7 @@
                     </div>
                 </div>
             </div>
-            <div class="property-card fade-in">
+            <div class="property-card">
                 <div class="property-img">
                     <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="IBUSA VILLA">
                     <span class="property-badge">C of O</span>
@@ -596,7 +588,7 @@
                     </div>
                 </div>
             </div>
-            <div class="property-card fade-in">
+            <div class="property-card">
                 <div class="property-img">
                     <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="DIVINE CITY ESTATE">
                     <span class="property-badge">Survey</span>
@@ -604,4 +596,260 @@
                 <div class="property-info">
                     <div class="property-loc">ISIEKE UMUEKEA, IBUSA</div>
                     <h3 class="property-title">DIVINE CITY ESTATE</h3>
-                    <span class="property-doc">REGISTERED S
+                    <span class="property-doc">REGISTERED SURVEY & DEED</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N6M <span class="old">N10M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=600&q=80" alt="ROYAL CITY ESTATE">
+                    <span class="property-badge">C of O</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-loc">ISTUA OKAFOR STREET, IBUSA</div>
+                    <h3 class="property-title">ROYAL CITY ESTATE</h3>
+                    <span class="property-doc">CERTIFICATE OF OCCUPANCY</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N22.5M <span class="old">N33M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="TREASURE PARK">
+                    <span class="property-badge">C of O</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-loc">OTULU, ASABA</div>
+                    <h3 class="property-title">TREASURE PARK</h3>
+                    <span class="property-doc">CERTIFICATE OF OCCUPANCY</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N10M <span class="old">N15M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="DE ROYAL COURT">
+                    <span class="property-badge">C of O</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-loc">UMUEHEA, IBUSA</div>
+                    <h3 class="property-title">DE ROYAL COURT</h3>
+                    <span class="property-doc">CERTIFICATE OF OCCUPANCY</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N20M <span class="old">N24M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt="DIVINE HILLTOP">
+                    <span class="property-badge">Survey</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-loc">OGIDIGBA UMUIDI RD, IBUSA</div>
+                    <h3 class="property-title">DIVINE HILLTOP</h3>
+                    <span class="property-doc">REGISTERED SURVEY & DEED</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N8M <span class="old">N12M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=80" alt="DIVINE ROYAL">
+                    <span class="property-badge">C of O</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-loc">ZION ROAD, IBUSA</div>
+                    <h3 class="property-title">DIVINE ROYAL</h3>
+                    <span class="property-doc">CERTIFICATE OF OCCUPANCY</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N25M <span class="old">N30M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="AMAEZE ESTATE">
+                    <span class="property-badge">Survey</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-loc">IBUSA</div>
+                    <h3 class="property-title">AMAEZE ESTATE</h3>
+                    <span class="property-doc">REGISTERED SURVEY & DEED</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N18.5M <span class="old">N22.5M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="IBUSA AMAKA ESTATE">
+                    <span class="property-badge">C of O</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-loc">OGIDIGBA UMUIDI RD, IBUSA</div>
+                    <h3 class="property-title">IBUSA AMAKA ESTATE</h3>
+                    <span class="property-doc">CERTIFICATE OF OCCUPANCY</span>
+                    <div class="property-size">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        464 SQM
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">N19.5M <span class="old">N25M</span></div>
+                        <button class="property-btn">Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="about-grid">
+            <div class="about-content">
+                <span class="tag">About Us</span>
+                <h2><span>YOUR TRUSTED PARTNER</span><br>IN REAL ESTATE</h2>
+                <p>Applause Property is a leading real estate company in Nigeria with offices in Lagos, Asaba, Aba, and Owerri. We specialize in connecting discerning buyers with premium properties that offer both comfort and long-term value.</p>
+                <p>Every property in our portfolio is thoroughly verified and comes with complete documentation.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="About">
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="section-header">
+            <span class="tag">FAQ</span>
+            <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            <p>Find answers to common questions about our estates.</p>
+        </div>
+        <div class="faq-box">
+            <h3>📋 FAQ COMING SOON</h3>
+            <p>Each estate has its own unique FAQ. We are currently reviewing all documentation. Check back soon for detailed answers about our properties.</p>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="section-header">
+            <span class="tag">Get In Touch</span>
+            <h2>BOOK AN INSPECTION</h2>
+            <p>Ready to find your perfect property? Reach out to us.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    <div>
+                        <h4>OFFICE ADDRESS</h4>
+                        <p>OBINNA JUNCTION, BESIDE BIGGY KITCHEN, BY MIDWIFERY MARKET, OFF OKPANAM ROAD, ASABA</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📞</div>
+                    <div>
+                        <h4>PHONE</h4>
+                        <p>+234 916 496 1193</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">✉️</div>
+                    <div>
+                        <h4>EMAIL</h4>
+                        <p>infoapplausepro@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🕐</div>
+                    <div>
+                        <h4>WORKING HOURS</h4>
+                        <p>MON - SAT: 8:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <label>FULL NAME *</label>
+                        <input type="text" name="name" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>EMAIL *</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PHONE *</label>
+                        <input type="tel" name="phone" placeholder="+234 916 496 1193" required>
+                    </div>
+                    <div class="form-group">
+                        <label>MESSAGE *</label>
+                        <textarea name="message" placeholder="Tell us about your property needs..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <a href="#" class="logo">applause-property</a>
+        <p>OBINNA JUNCTION, BESIDE BIGGY KITCHEN, BY MIDWIFERY MARKET, OFF OKPANAM ROAD, ASABA</p>
+        <p class="footer-phone">+234 916 496 1193</p>
+        <p>infoapplausepro@gmail.com</p>
+        <div class="footer-social">
+            <a href="https://wa.me/2349164961193" target="_blank">💬</a>
+            <a href="https://www.instagram.com/infoapplausepro?igsh=MTVyb3lpanJtdjM2aA==" target="_blank">📷</a>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 APPLAUSE PROPERTY. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+            document.getElementById('mobileOverlay').classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>

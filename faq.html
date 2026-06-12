@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Applause Property</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a1f0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,31,10,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+        .logo-text { font-size: 1.3rem; font-weight: 700; color: #c8f542; }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #a3c9a3;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a.active { color: #c8f542; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #c8f542;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .mobile-nav {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #0d260d;
+            z-index: 999;
+            padding: 5rem 2rem 2rem;
+            transition: right 0.3s ease;
+            border-left: 1px solid #1a3d1a;
+        }
+        .mobile-nav.active { right: 0; }
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 998;
+            display: none;
+        }
+        .mobile-nav-overlay.active { display: block; }
+        .mobile-nav-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .mobile-nav-links { list-style: none; }
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #1a3d1a;
+            padding-bottom: 1rem;
+        }
+        .mobile-nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .faq-hero {
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 5% 3rem;
+            background: linear-gradient(rgba(10,31,10,0.95), rgba(10,31,10,0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .faq-hero-content { max-width: 700px; }
+        .faq-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        .faq-hero h1 span { color: #c8f542; }
+        .faq-hero p {
+            font-size: 1.1rem;
+            color: #a3c9a3;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #a3c9a3;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: #c8f542; }
+        .back-link svg { width: 18px; height: 18px; }
+        .faq-section {
+            padding: 3rem 5% 5rem;
+            background: #0d260d;
+        }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-category { margin-bottom: 3rem; }
+        .faq-category-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #c8f542;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #1a3d1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .faq-item {
+            background: #143214;
+            border: 1px solid #1a3d1a;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .faq-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+        .faq-question {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: none;
+            background: #143214;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            transition: background 0.3s;
+            font-family: inherit;
+        }
+        .faq-question:hover { background: #1a3d1a; }
+        .faq-question[aria-expanded="true"] {
+            background: #1a3d1a;
+            color: #c8f542;
+        }
+        .faq-question[aria-expanded="true"] .faq-number { color: #c8f542; }
+        .faq-number {
+            font-weight: 700;
+            color: #c8f542;
+            margin-right: 12px;
+            min-width: 30px;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .faq-text { flex: 1; line-height: 1.4; }
+        .faq-icon {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-left: 12px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.4s ease;
+            background: #0a1f0a;
+        }
+        .faq-answer.active {
+            max-height: 2500px;
+            padding: 0 1.5rem 1.5rem 3.3rem;
+        }
+        .faq-answer p {
+            color: #a3c9a3;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        .faq-answer p:last-child { margin-bottom: 0; }
+        .faq-note {
+            color: #6b9e6b;
+            font-style: italic;
+            padding: 1rem 1.2rem;
+            background: #0d260d;
+            border-left: 3px solid #c8f542;
+            border-radius: 0 8px 8px 0;
+            margin-top: 0.8rem;
+            line-height: 1.7;
+            font-size: 0.85rem;
+        }
+        .faq-cta {
+            padding: 4rem 5%;
+            text-align: center;
+            background: #0a1f0a;
+        }
+        .faq-cta h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .faq-cta p {
+            color: #a3c9a3;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-primary {
+            background: #c8f542;
+            color: #0a1f0a;
+        }
+        .btn-primary:hover { background: #b3e639; transform: translateY(-2px); }
+        .footer {
+            background: #0d260d;
+            border-top: 1px solid #1a3d1a;
+            padding: 3rem 5% 1.5rem;
+            text-align: center;
+        }
+        .footer .logo { margin-bottom: 1rem; display: inline-block; }
+        .footer p { color: #6b9e6b; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .footer-phone { color: #c8f542; font-size: 1.1rem; font-weight: 700; }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .footer-social a {
+            padding: 0.5rem 1.2rem;
+            background: #143214;
+            border: 1px solid #1a3d1a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a3c9a3;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { background: #c8f542; color: #0a1f0a; border-color: #c8f542; }
+        .footer-bottom {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1a3d1a;
+            color: #6b9e6b;
+            font-size: 0.8rem;
+        }
+        .reg-number {
+            color: #c8f542;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .faq-hero { padding-top: 6rem; }
+            .faq-question { padding: 1rem; font-size: 0.88rem; }
+            .faq-answer.active { padding: 0 1rem 1rem 2.8rem; }
+            .faq-number { min-width: 26px; font-size: 0.9rem; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-text">APPLAUSE</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="index.html#process">PROCESS</a></li>
+            <li><a href="index.html#properties">PROPERTIES</a></li>
+            <li><a href="index.html#about">ABOUT</a></li>
+            <li><a href="faq.html" class="active">FAQ</a></li>
+            <li><a href="index.html#contact">CONTACT</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleMenu()"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMenu()">✕</button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" onclick="toggleMenu()">HOME</a></li>
+            <li><a href="index.html#process" onclick="toggleMenu()">PROCESS</a></li>
+            <li><a href="index.html#properties" onclick="toggleMenu()">PROPERTIES</a></li>
+            <li><a href="index.html#about" onclick="toggleMenu()">ABOUT</a></li>
+            <li><a href="faq.html" onclick="toggleMenu()">FAQ</a></li>
+            <li><a href="index.html#contact" onclick="toggleMenu()">CONTACT</a></li>
+        </ul>
+    </div>
+
+    <section class="faq-hero">
+        <div class="faq-hero-content">
+            <h1>Frequently Asked <span>Questions</span></h1>
+            <p>Everything you need to know about buying property with Applause Property.</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container">
+
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Home
+            </a>
+
+            <div class="faq-category">
+                <h3 class="faq-category-title">Ownership and Property Details</h3>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">1.</span>
+                        <span class="faq-text">Who are the owners/developers of this estate?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>APPLAUSE PROPERTIES LTD, a leading real estate company with office at Obinna Junction, Beside Biggy Kitchen by Midwifery, Off Okpanam Road, Asaba.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">2.</span>
+                        <span class="faq-text">Property Inspection</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Clients or their representatives are advised to inspect the site, subsequent to confirmation of appointments made at APPLAUSE Properties Ltd office or with the designated sales representative.</p>
+                        <p class="faq-note"><em>NB: The company shall not be held liable for claims/issues arising from client's inability/failure to inspect the property before purchase. It is deemed that the property was duly inspected by the subscriber and/or the representative upon payment and signing of this form.</em></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">3.</span>
+                        <span class="faq-text">Are there any encumbrances on the land?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The land is free from any known Government acquisition or interest or adverse claims.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">4.</span>
+                        <span class="faq-text">What is the size of the plot?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>464 SQM</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">5.</span>
+                        <span class="faq-text">Is the road to the estate motorable?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>YES, the road is motorable and maintained by APPLAUSE PROPERTIES.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">6.</span>
+                        <span class="faq-text">What is the topography of the land?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>It is a dry and table land.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3 class="faq-category-title">Payments, Title, and Refunds</h3>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">7.</span>
+                        <span class="faq-text">When do I make other payments after completing payment for the land?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>50% of Development Fee shall be paid before commencing construction work on the land, while the remaining 50% shall be paid within one year of commencing work on site.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">8.</span>
+                        <span class="faq-text">What do I get after initial payment deposit?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Starters Pack comprising of a letter of acknowledgement of subscription and receipt of payment.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">9.</span>
+                        <span class="faq-text">What do I get after completing payment of the land?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>(i) Complete Payment Receipt, Contract of Sale and Allocation Notification Letter</p>
+                        <p>(ii) Survey plan will be issued after Physical Allocation is done.</p>
+                        <p>(iii) Deed of Assignment shall be issued after all outstanding payments are done.</p>
+                        <p class="faq-note"><em>In this note, a client is eligible to get a copy of his or her Deed of Assignment only when all outstanding payments of their land has been made.</em></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">10.</span>
+                        <span class="faq-text">Can I pay cash to your agent?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We strongly advise that cash payment should ONLY be made to APPLAUSE Properties Limited at its designated banks. Otherwise, cheque(s) should be issued in favour of APPLAUSE Properties Limited.</p>
+                        <p class="faq-note"><em>WE SHALL NOT ACCEPT ANY RESPONSIBILITY FOR ANY LIABILITY THAT MAY ARISE AS A RESULT OF A DEVIATION FROM THE WHOLE INSTRUCTION.</em></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">11.</span>
+                        <span class="faq-text">What happens if I cannot continue with my payment? Can I request a refund?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can apply for a refund only if you have not been allocated your plot(s). In the event of a refund, you are required to give the company ninety (90) days' notice to process your refund request and a further sixty (60) days if the process isn't completed after the first 90 days. The refund shall be processed and paid less 40% (Administrative and Agency Fee).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">12.</span>
+                        <span class="faq-text">How do I pay for perfection of title?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The cost of title such as Governor's Consent shall be borne by the subscriber.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">13.</span>
+                        <span class="faq-text">What other payments do I make apart from payment of the land?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The development fee will be disclosed to all subscribers prior to commencement of development and shall be set in accordance with prevailing economic rates:</p>
+                        <p>(i) Drainage Construction (ii) Electrification (iii) Creation of Good Road and Network (iv) Landscaping</p>
+                        <p>Land maintenance fee costs N200,000 for every three months.</p>
+                        <p class="faq-note"><em>Documentation Fee is completely waived (Deed of Assignment, Registered Survey, and C of O).</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3 class="faq-category-title">Construction, Resale, and Legal Policies</h3>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">14.</span>
+                        <span class="faq-text">Can I start construction or building on the land?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can start building on the land after Physical Allocation, while fencing and estate development is going on.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">15.</span>
+                        <span class="faq-text">Are there any restrictions regarding the type of building I can construct in the estate?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>YES. The estate's layout is in sections and you are limited to build houses on each section based on the designated plan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">16.</span>
+                        <span class="faq-text">Can I re-sell my plot/property?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>YES. Subscribers who have paid for their land in full can re-sell their plot(s). APPLAUSE Properties Limited would require the seller to furnish the company with the details of the buyer. A charge of 10% of the land consideration (covering Transfer Documentation Fee) shall be paid to the company by the buyer.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">17.</span>
+                        <span class="faq-text">Substitution Clause</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>In the event that the Company, for any reason beyond its control, is unable to deliver vacant and physical possession of the property described herein, the Company shall have the right, with written notice to the Subscriber, to allocate subscribers to a new or nearby scheme or phase of the estate or a new estate of equivalent market value, size, and location (as at the time of the substitution), subject to the terms and conditions as in the original or as may be revised.</p>
+                        <p>The Subscriber shall have the right to accept the substituted property. If the Subscriber does not accept the alternate property within 30 days of the offer, the Subscriber shall have the right to execute the Purchase Refund for the said alternate property.</p>
+                        <p>Any such refund shall be subject to the terms outlined in the Refund section of this Agreement.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">18.</span>
+                        <span class="faq-text">Cyberbullying/Stalking</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Subscribers accept that publishing malicious content either in print or social media in any way intended or not to cause harm and damage to the Company in disregard of the Dispute Resolution Clause can attract civil and criminal liabilities under the laws of the Federal Republic of Nigeria.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-number">19.</span>
+                        <span class="faq-text">Death of Subscriber</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>In the event of the death of the Subscriber upon completion or prior to the completion of all contractual obligations under this Agreement, the rights, interests, and liabilities of the Subscriber in respect of the land herein subscribed for shall devolve upon the lawful heirs, next of kin, or personal representatives of the deceased in accordance with the laws of the Federal Republic of Nigeria.</p>
+                        <p>The following documents are required:</p>
+                        <p>(i) A certified copy of death certificate</p>
+                        <p>(ii) A certified copy of letter of administration or grant of probate issued by a competent Nigerian Court</p>
+                        <p>(iii) A certified copy of a sworn affidavit of next of kin (where applicable)</p>
+                        <p>(iv) Any other relevant documentation as the Vendor may reasonably require</p>
+                        <p>Upon verification and satisfaction of the vendor, the Vendor shall recognize and deal with the personal representative(s) or lawful beneficiary(ies) of the deceased Subscriber regarding any outstanding obligations or liabilities incurred prior to death, including unpaid balances, fees, or charges due under this Agreement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-cta">
+        <h2>Still Have Questions?</h2>
+        <p>Our team is ready to help you find your perfect property.</p>
+        <a href="index.html#contact" class="btn btn-primary">Book an Inspection</a>
+    </section>
+
+    <footer class="footer">
+        <a href="index.html" class="logo">
+            <span class="logo-text">APPLAUSE</span>
+        </a>
+        <p class="reg-number">RC: 9035259</p>
+        <p>OBINNA JUNCTION, OFF MIDWIFERY MARKET, OKPANAM 320242, DELTA</p>
+        <p class="footer-phone">+234 916 496 1193</p>
+        <p>infoapplausepro@gmail.com</p>
+        <div class="footer-social">
+            <a href="https://wa.me/2349164961193">WhatsApp</a>
+            <a href="https://www.instagram.com/infoapplausepro">Instagram</a>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 APPLAUSE PROPERTY. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+            document.getElementById('mobileOverlay').classList.toggle('active');
+        }
+        (function() {
+            var questions = document.querySelectorAll('.faq-question');
+            questions.forEach(function(q) {
+                q.addEventListener('click', function() {
+                    var isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    var answer = this.nextElementSibling;
+                    var icon = this.querySelector('.faq-icon');
+                    questions.forEach(function(other) {
+                        if (other !== q) {
+                            other.setAttribute('aria-expanded', 'false');
+                            other.nextElementSibling.classList.remove('active');
+                            other.querySelector('.faq-icon').textContent = '+';
+                        }
+                    });
+                    if (isExpanded) {
+                        this.setAttribute('aria-expanded', 'false');
+                        answer.classList.remove('active');
+                        icon.textContent = '+';
+                    } else {
+                        this.setAttribute('aria-expanded', 'true');
+                        answer.classList.add('active');
+                        icon.textContent = '×';
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>

@@ -682,6 +682,48 @@
         @media (max-width: 600px) {
             .faq-preview-grid { grid-template-columns: 1fr; }
         }
+        
+        /* Subscription Form Modal Styles */
+.modal-overlay {
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); 
+    backdrop-filter: blur(5px); overflow-y: auto;
+}
+.modal-content {
+    background-color: #0d260d; margin: 5% auto; padding: 2rem; 
+    border: 1px solid #c8f542; border-radius: 12px; width: 90%; 
+    max-width: 800px; color: #fff; position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.close-modal {
+    color: #a3c9a3; position: absolute; top: 1rem; right: 1.5rem; 
+    font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+.close-modal:hover { color: #c8f542; }
+.form-header { text-align: center; margin-bottom: 2rem; }
+.form-header h2 { color: #c8f542; font-size: 1.8rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+.form-header p { color: #a3c9a3; font-size: 0.9rem; }
+.form-section-title {
+    font-size: 1.1rem; font-weight: 600; color: #fff; margin: 1.5rem 0 1rem; 
+    padding-bottom: 0.5rem; border-bottom: 1px solid #1a3d1a; text-transform: uppercase;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-full { grid-column: 1 / -1; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-size: 0.85rem; color: #c8f542; font-weight: 500; }
+.form-group input, .form-group select {
+    padding: 0.8rem; border-radius: 6px; border: 1px solid #1a3d1a; 
+    background: #143214; color: #fff; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+}
+.form-group input:focus, .form-group select:focus { outline: none; border-color: #c8f542; }
+.submit-btn {
+    background: #c8f542; color: #0a1f0a; border: none; padding: 1rem 2rem; 
+    font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer; 
+    width: 100%; margin-top: 2rem; text-transform: uppercase; transition: all 0.3s;
+}
+.submit-btn:hover { background: #b3e639; transform: translateY(-2px); }
+.declaration { font-size: 0.8rem; color: #a3c9a3; margin-top: 1rem; line-height: 1.5; }
+@media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
 </style>
 <base>
 </head>
@@ -745,7 +787,10 @@
             <div class="process-card">
                 <div class="process-num">3</div>
                 <h3>MAKE PAYMENT</h3>
-                <p>Complete purchase with secure payment and receive all documents.</p>
+                <div class="process-card" onclick="openForm()" style="cursor: pointer;">
+    <h3>Make Payment</h3>
+    <p>Complete purchase with a secure payment and receive all documents. Click here to fill the subscription form.</p>
+</div>
             </div>
         </div>
     </section>
@@ -1096,5 +1141,60 @@
         }
     </script>
 
+    <div id="subscriptionModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeForm()">×</span>
+        
+        <div class="form-header">
+            <h2>Subscription Form</h2>
+            <p>Please fill out all required fields to initiate your property purchase.</p>
+        </div>
+
+        <form action="YOUR_FORMSPREE_LINK_HERE" method="POST">
+            
+            <div class="form-section-title">Personal Information</div>
+            <div class="form-grid">
+                <div class="form-group"><label>Title</label><select name="Title" required><option value="">Select...</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option><option value="Miss">Miss</option><option value="Dr">Dr</option><option value="Chief">Chief</option></select></div>
+                <div class="form-group"><label>Marital Status</label><select name="Marital Status" required><option value="">Select...</option><option value="Single">Single</option><option value="Married">Married</option></select></div>
+                <div class="form-group"><label>Surname</label><input type="text" name="Surname" required></div>
+                <div class="form-group"><label>Other Names</label><input type="text" name="Other Names" required></div>
+                <div class="form-group"><label>Date of Birth</label><input type="date" name="Date of Birth" required></div>
+                <div class="form-group"><label>Nationality</label><input type="text" name="Nationality" required></div>
+                <div class="form-group"><label>Occupation</label><input type="text" name="Occupation"></div>
+                <div class="form-group"><label>Employer's Name</label><input type="text" name="Employer"></div>
+                <div class="form-group form-full"><label>Residential Address</label><input type="text" name="Residential Address" required></div>
+                <div class="form-group form-full"><label>Mailing Address</label><input type="text" name="Mailing Address"></div>
+                <div class="form-group"><label>Email Address</label><input type="email" name="Email" required></div>
+                <div class="form-group"><label>Phone Number(s)</label><input type="tel" name="Phone Number" required></div>
+                <div class="form-group"><label>Means of ID</label><select name="ID Type" required><option value="">Select...</option><option value="National ID">National ID</option><option value="Drivers License">Driver's License</option><option value="Voters Card">Voter's Card</option><option value="International Passport">International Passport</option></select></div>
+                <div class="form-group"><label>ID Number</label><input type="text" name="ID Number" required></div>
+            </div>
+
+            <div class="form-section-title">Next of Kin Information</div>
+            <div class="form-grid">
+                <div class="form-group"><label>Full Name</label><input type="text" name="NOK Name" required></div>
+                <div class="form-group"><label>Relationship</label><input type="text" name="NOK Relationship" required></div>
+                <div class="form-group"><label>Phone Number</label><input type="tel" name="NOK Phone" required></div>
+                <div class="form-group"><label>Email Address</label><input type="email" name="NOK Email"></div>
+                <div class="form-group form-full"><label>Residential Address</label><input type="text" name="NOK Address" required></div>
+            </div>
+
+            <div class="form-section-title">Property Details</div>
+            <div class="form-grid">
+                <div class="form-group"><label>Name of Estate</label><select name="Estate Name" required><option value="">Select...</option><option value="Applause Court">Applause Court</option><option value="Ibusa Villa">Ibusa Villa</option><option value="Divine City Estate">Divine City Estate</option><option value="Royal City Estate">Royal City Estate</option><option value="Treasure Park">Treasure Park</option><option value="De Royal Court">De Royal Court</option><option value="Divine Hilltop">Divine Hilltop</option><option value="Divine Royal">Divine Royal</option><option value="Amaeze Estate">Amaeze Estate</option><option value="Ibusa Amaka Estate">Ibusa Amaka Estate</option></select></div>
+                <div class="form-group"><label>Type of Plot</label><select name="Plot Type" required><option value="">Select...</option><option value="Residential">Residential</option><option value="Commercial">Commercial</option></select></div>
+                <div class="form-group"><label>Number of Plots</label><input type="number" name="Number of Plots" min="1" required></div>
+                <div class="form-group"><label>Payment Plan</label><select name="Payment Plan" required><option value="">Select...</option><option value="Outright">Outright</option><option value="3 Months Installment">3 Months Installment</option><option value="6 Months Installment">6 Months Installment</option><option value="12 Months Installment">12 Months Installment</option></select></div>
+            </div>
+
+            <div class="declaration">
+                <input type="checkbox" required style="margin-right: 5px;"> 
+                I hereby declare that the information provided above is true and accurate. I understand that the terms and conditions in the FAQ/Agreement apply to this purchase.
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

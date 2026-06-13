@@ -1138,6 +1138,24 @@
             document.getElementById('mobileNav').classList.toggle('active');
             document.getElementById('mobileOverlay').classList.toggle('active');
         }
+        function openForm() {
+    document.getElementById('subscriptionModal').style.display = 'block';
+    // This stops the background from scrolling when the form is open
+    document.body.style.overflow = 'hidden'; 
+}
+
+function closeForm() {
+    document.getElementById('subscriptionModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close the form if the user clicks outside the box
+window.onclick = function(event) {
+    var modal = document.getElementById('subscriptionModal');
+    if (event.target == modal) {
+        closeForm();
+    }
+}
     </script>
 
     <div id="subscriptionModal" class="modal-overlay">

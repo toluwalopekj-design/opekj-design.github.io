@@ -724,6 +724,37 @@
 .submit-btn:hover { background: #b3e639; transform: translateY(-2px); }
 .declaration { font-size: 0.8rem; color: #a3c9a3; margin-top: 1rem; line-height: 1.5; }
 @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+
+        /* Process Cards Hover Glow Effect */
+.process-card {
+    transition: all 0.3s ease;
+}
+.process-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(200, 245, 66, 0.3);
+    border-color: #c8f542;
+}
+
+/* Make Payment Box Special Highlight */
+.payment-cta {
+    background: linear-gradient(145deg, #143214, #1a421a) !important;
+    border: 2px solid #c8f542 !important;
+    animation: pulse-glow 2.5s infinite;
+}
+.payment-cta h3 {
+    color: #c8f542 !important;
+    font-weight: 700;
+}
+.payment-cta p {
+    color: #fff !important;
+}
+
+/* The Radar Pulse Animation */
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(200, 245, 66, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(200, 245, 66, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(200, 245, 66, 0); }
+}
 </style>
 <base>
 </head>
@@ -787,7 +818,7 @@
             <div class="process-card">
                 <div class="process-num">3</div>
                 <h3>MAKE PAYMENT</h3>
-                <div class="process-card" onclick="openForm()" style="cursor: pointer;">
+                <div class="process-card payment-cta" onclick="openForm()" style="cursor: pointer;">
     <p>Complete purchase with a secure payment and receive all documents. Click here to fill the subscription form.</p>
 </div>
             </div>

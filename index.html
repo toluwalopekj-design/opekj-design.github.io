@@ -1506,6 +1506,30 @@
     </footer>
 
     <script>
+        // Force all links to open in same tab - prevent any external tab opening
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a');
+            if (link && link.href) {
+                // Remove any dynamically added target attributes
+                link.removeAttribute('target');
+                // If the link is external and would open in new tab, prevent it
+                if (link.getAttribute('target') === '_blank') {
+                    e.preventDefault();
+                    window.location.href = link.href;
+                }
+            }
+        }, true);
+
+        // Also use MutationObserver to catch any dynamically added target attributes
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'target') {
+                    mutation.target.removeAttribute('target');
+                }
+            });
+        });
+        observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['target'] });
+
         function toggleMenu() {
             document.getElementById('mobileNav').classList.toggle('active');
             document.getElementById('mobileOverlay').classList.toggle('active');
@@ -1523,6 +1547,11 @@ function closeForm() {
 
 // Close the form if the user clicks outside the box
 window.onclick = function(event) {
+    // Prevent any link from opening in new tab
+    var link = event.target.closest('a');
+    if (link && link.getAttribute('target') === '_blank') {
+        link.removeAttribute('target');
+    }
     var modal = document.getElementById('subscriptionModal');
     if (event.target == modal) {
         closeForm();
@@ -1589,6 +1618,10 @@ function selectNokCountry(code, flagUrl, countryCode) {
 
 // Hero background slideshow
 document.addEventListener('DOMContentLoaded', function() {
+    // Strip target="_blank" from all links on page load
+    document.querySelectorAll('a[target="_blank"]').forEach(function(link) {
+        link.removeAttribute('target');
+    });
     var slides = document.querySelectorAll('.hero-bg-slide');
     console.log('Found slides:', slides.length);
     

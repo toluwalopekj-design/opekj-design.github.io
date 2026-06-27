@@ -414,15 +414,55 @@
             letter-spacing: 1px;
         }
 
+        .pdf-section {
+            grid-column: 1 / -1;
+            margin-top: 1rem;
+        }
+        .pdf-section h3 {
+            font-size: 1rem;
+            color: #c8f542;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            border: 1px solid #1a3d1a;
+            background: #0d260d;
+            margin-bottom: 1rem;
+        }
+        .pdf-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.5rem;
+            background: #c8f542;
+            color: #0a1f0a;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .pdf-download-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             .estate-detail-grid { grid-template-columns: 1fr; gap: 2rem; }
             .estate-images { grid-template-columns: 1fr; }
             .estate-images .flyer-img { grid-column: 1; }
+            .pdf-viewer { height: 400px; }
         }
     </style>
-<base target="_blank">
 </head>
 <body>
     <nav class="navbar">
@@ -465,7 +505,18 @@
         
         <div class="estate-detail-grid">
             <div class="estate-images">
-                <img src="assets/images/amaeze-estate-flyer.jpg" alt="Amaeze Estate Flyer" class="flyer-img">
+                <div class="pdf-section">
+                    <h3>Subscription Form</h3>
+                    <embed src="assets/pdfs/Amaeze sub form.pdf" class="pdf-viewer" type="application/pdf">
+                    <a href="assets/pdfs/Amaeze sub form.pdf" download class="pdf-download-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Form
+                    </a>
+                </div>
 
                 <div class="video-section">
                     <h3>Property Video Tour</h3>
@@ -502,25 +553,13 @@
                         <a href="https://wa.me/2349164961193" class="btn btn-outline" style="flex: 1; text-align: center;">WhatsApp</a>
                     </div>
                     
-                    <a href="https://youtu.be/iOofXnKtJf8" target="_blank" class="btn btn-youtube">
+                    <a href="https://youtu.be/iOofXnKtJf8" class="btn btn-youtube">
                         <svg viewBox="0 0 24 24"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4s-6.254,0-7.814,0.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg>
                         Watch Full Tour on YouTube
                     </a>
                     
-                    <a href="https://www.google.com/maps/search/?api=1&query=Ibusa+Delta+Nigeria" class="btn btn-maps" target="_blank">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ibusa+Delta+Nigeria" class="btn btn-maps">
                         📍 View on Google Maps
-                    </a>
-                    
-                    <!-- Updated with the exact GitHub raw link -->
-                    <a href="assets/pdfs/Amaeze sub form.pdf" target="_blank" class="btn btn-pdf">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                        View & Download Subscription Form
                     </a>
                 </div>
                 

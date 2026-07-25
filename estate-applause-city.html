@@ -6,7 +6,7 @@
     <title>APPLAUSE CITY | Applause Property</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
+     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -31,7 +31,6 @@
             align-items: center;
             gap: 0.6rem;
             text-decoration: none;
-            justify-content: center;
         }
         .logo img { height: 42px; width: auto; display: block; }
         .nav-links {
@@ -137,14 +136,21 @@
         }
         .estate-images {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
         .estate-images img {
             width: 100%;
             border-radius: 12px;
             object-fit: cover;
+            height: 220px;
+        }
+        .estate-images .flyer-img {
+            grid-column: 1 / -1;
             height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            background: #0d260d;
         }
         .estate-info-panel {
             background: #143214;
@@ -161,20 +167,19 @@
             border: 1px solid #1a3d1a;
         }
         .estate-price-box .promo {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #c8f542;
         }
         .estate-price-box .actual {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #6b9e6b;
             text-decoration: line-through;
         }
         .estate-price-box .instant {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #a3c9a3;
             margin-top: 0.3rem;
-            font-weight: bold;
         }
         .estate-features h3,
         .estate-landmarks h3,
@@ -210,6 +215,17 @@
             left: 0;
             color: #c8f542;
         }
+        .estate-dry-land {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #0d260d;
+            border: 1px solid #c8f542;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #c8f542;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -221,50 +237,14 @@
             transition: color 0.3s;
         }
         .back-btn:hover { color: #c8f542; }
-        
-        .maps-section {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #1a3d1a;
-        }
-        .maps-section p {
-            color: #a3c9a3;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .bank-info {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #1a3d1a;
-        }
-        .bank-info h3 {
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-        .bank-info p {
-            color: #a3c9a3;
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-            text-transform: uppercase;
-        }
-        .bank-info .acct {
-            color: #c8f542;
-            font-weight: 700;
-            font-size: 1.1rem;
-            font-family: monospace;
-            margin-bottom: 1rem;
-        }
-
         .estate-cta {
             display: flex;
             gap: 1rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
         .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
             font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
@@ -274,88 +254,113 @@
             transition: all 0.3s;
             text-transform: uppercase;
             text-align: center;
-            flex: 1;
         }
         .btn-primary {
             background: #c8f542;
             color: #0a1f0a;
+            flex: 1;
         }
         .btn-primary:hover { background: #b3e639; transform: translateY(-2px); }
         .btn-outline {
             background: transparent;
             color: #c8f542;
             border: 2px solid #c8f542;
+            flex: 1;
         }
         .btn-outline:hover { background: #c8f542; color: #0a1f0a; }
-
+        .btn-maps {
+            background: #143214;
+            color: #c8f542;
+            border: 1px solid #1a3d1a;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-maps:hover { background: #1a3d1a; border-color: #c8f542; }
+        .bank-info {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1a3d1a;
+        }
+        .bank-info p {
+            color: #a3c9a3;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        .bank-info .acct {
+            color: #c8f542;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: monospace;
+        }
         .footer {
             background: #0d260d;
             border-top: 1px solid #1a3d1a;
-            padding: 4rem 5% 2rem;
+            padding: 3rem 5% 1.5rem;
             text-align: center;
         }
-        .footer .logo { margin-bottom: 1rem; display: inline-flex; }
-        .reg-number {
-            color: #6b9e6b;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        .footer-address {
-            color: #6b9e6b;
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-        }
-        .footer-maps-link {
-            display: inline-block;
-            color: #c8f542;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-        .footer-phone {
-            color: #c8f542;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .footer-email {
-            display: inline-block;
-            color: #6b9e6b;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-        }
+        .footer .logo { margin-bottom: 1rem; display: inline-block; }
+        .footer p { color: #6b9e6b; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .footer-phone { color: #c8f542; font-size: 1.1rem; font-weight: 700; }
         .footer-social {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-bottom: 3rem;
+            margin: 1.5rem 0;
         }
         .footer-social a {
-            padding: 0.6rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             background: #143214;
-            border-radius: 6px;
+            border: 1px solid #1a3d1a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #a3c9a3;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
             transition: all 0.3s;
         }
-        .footer-social a:hover { background: #1a3d1a; color: #c8f542; }
+        .footer-social a:hover { background: #c8f542; color: #0a1f0a; border-color: #c8f542; }
         .footer-bottom {
-            padding-top: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
             border-top: 1px solid #1a3d1a;
             color: #6b9e6b;
+            font-size: 0.8rem;
+        }
+        .reg-number {
+            color: #c8f542;
             font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
+            letter-spacing: 1px;
+        }
+        .maps-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1a3d1a;
+        }
+        .maps-section h3 {
+            font-size: 1rem;
+            color: #c8f542;
+            margin-bottom: 0.8rem;
             text-transform: uppercase;
+        }
+        .maps-section p {
+            color: #a3c9a3;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             .estate-detail-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .estate-features ul { grid-template-columns: 1fr; }
+            .estate-images { grid-template-columns: 1fr; }
+            .estate-images .flyer-img { grid-column: 1; }
             .estate-cta { flex-direction: column; }
         }
     </style>
@@ -409,7 +414,19 @@
                     <p class="actual">₦6,000,000</p>
                     <p class="instant">Instant Allocation</p>
                 </div>
-                
+                <span class="estate-dry-land">100% DRY LAND</span>
+
+                <div class="estate-landmarks">
+                    <h3>Landmarks</h3>
+                    <ul>
+                        <li>4 minutes drive to Otulu Junction.</li>
+                        <li>6 minutes drive to Enu-Ani Mega City.</li>
+                        <li>8 minutes drive to Wichtech.</li>
+                        <li>10 minutes drive to Okpanam City Gate</li>
+                        <li>15 minutes drive to Asaba Airport.</li>
+                    </ul>
+                </div>
+
                 <div class="estate-features">
                     <h3>Estate Features</h3>
                     <ul>
@@ -426,21 +443,10 @@
                     </ul>
                 </div>
 
-                <div class="estate-landmarks">
-                    <h3>Landmarks</h3>
-                    <ul>
-                        <li>4 minutes to Otulu Junction.</li>
-                        <li>6 minutes to Enu-Ani Mega City.</li>
-                        <li>8 minutes to Wichtech.</li>
-                        <li>10 minutes to Okpanam City Gate</li>
-                        <li>15 minutes to Asaba Airport.</li>
-                    </ul>
-                </div>
-
                 <div class="maps-section">
                     <h3>📍 LOCATION</h3>
                     <p>View this estate on Google Maps to explore the area, check distances to landmarks, and plan your visit.</p>
-                    <a href="#" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">OPEN IN GOOGLE MAPS</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Behind+Immigration+Ibusa+Asaba" class="btn btn-maps">Open in Google Maps</a>
                 </div>
 
                 <div class="bank-info">
@@ -456,28 +462,29 @@
                     <a href="index.html#contact" class="btn btn-outline">CONTACT US</a>
                 </div>
             </div>
+      </div>
+        <div style="max-width:1100px;margin:2rem auto;padding:0 1rem;">
+            <h2 style="color:#c8f542;margin-bottom:1rem;font-size:1.5rem;">Estate Video Tour</h2>
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+                <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px;" src="https://www.youtube.com/embed/sJVcQjE0rCQ" allowfullscreen="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" loading="lazy"></iframe>
+            </div>
         </div>
     </section>
 
     <footer class="footer">
         <a href="index.html" class="logo">
-            <img src="assets/images/favicon.png" alt="Applause Property Logo">
-        </a>
+<img src="assets/images/favicon.png" alt="Applause Property Logo">        </a>
         <p class="reg-number">RC: 9035259</p>
-        
-        <p class="footer-address">OBINNA JUNCTION, OFF MIDWIFERY MARKET, OKPANAM 320242, DELTA</p>
-        <a href="#" class="footer-maps-link">📍 View on Google Maps</a>
-        
+        <p>OBINNA JUNCTION, OFF MIDWIFERY MARKET, OKPANAM 320242, DELTA</p>
+        <p style="margin-top:0.3rem;"><a href="https://www.google.com/maps/search/?api=1&query=Obinna+Junction+Okpanam+320242+Delta+Nigeria" style="color:#c8f542;text-decoration:none;font-size:0.85rem;">📍 View on Google Maps</a></p>
         <p class="footer-phone">+234 916 496 1193</p>
-        <a href="mailto:infoapplausepro@gmail.com" class="footer-email">infoapplausepro@gmail.com</a>
-        
+        <p>infoapplausepro@gmail.com</p>
         <div class="footer-social">
-            <a href="https://api.whatsapp.com/send?phone=2349164961193" target="_blank">WhatsApp</a>
-            <a href="https://instagram.com/applauseproperty" target="_blank">Instagram</a>
+            <a href="https://wa.me/2349164961193">WhatsApp</a>
+            <a href="https://www.instagram.com/infoapplausepro?igsh=MTVyb3lpanJtdjM2aA==">Instagram</a>
         </div>
-
         <div class="footer-bottom">
-            <p>&copy; 2026 APPLAUSE PROPERTY. ALL RIGHTS RESERVED.</p>
+            <p>© 2026 APPLAUSE PROPERTY. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 

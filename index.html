@@ -741,39 +741,6 @@
             100% { box-shadow: 0 0 0 0 rgba(10, 31, 10, 0); }
         }
 
-        /* Subscription Form Modal Styles */
-        .modal-overlay {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); 
-            backdrop-filter: blur(5px); overflow-y: auto;
-        }
-        .modal-content {
-            background-color: #ffffff; margin: 5% auto; padding: 2rem; 
-            border: 1px solid #eaeaea; border-radius: 12px; width: 90%; 
-            max-width: 800px; color: #0a1f0a; position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        .close-modal {
-            color: #4a6b4a; position: absolute; top: 1rem; right: 1.5rem; 
-            font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s;
-        }
-        .close-modal:hover { color: #0a1f0a; }
-        .form-header { text-align: center; margin-bottom: 2rem; }
-        .form-header h2 { color: #0a1f0a; font-size: 1.8rem; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 800; }
-        .form-header p { color: #4a6b4a; font-size: 0.9rem; }
-        .form-section-title {
-            font-size: 1.1rem; font-weight: 700; color: #0a1f0a; margin: 1.5rem 0 1rem; 
-            padding-bottom: 0.5rem; border-bottom: 1px solid #eaeaea; text-transform: uppercase;
-        }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .form-full { grid-column: 1 / -1; }
-        .submit-btn {
-            background: #c8f542; color: #0a1f0a; border: none; padding: 1rem 2rem; 
-            font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer; 
-            width: 100%; margin-top: 2rem; text-transform: uppercase; transition: all 0.3s;
-        }
-        .submit-btn:hover { background: #b3e639; transform: translateY(-2px); }
-        .declaration { font-size: 0.8rem; color: #4a6b4a; margin-top: 1rem; line-height: 1.5; }
 
         /* Mobile Adjustments */
         @media (max-width: 900px) {
@@ -865,9 +832,7 @@
             <div class="process-card">
                 <div class="process-num">3</div>
                 <h3>MAKE PAYMENT</h3>
-                <div class="process-card payment-cta" onclick="openForm()" style="cursor: pointer;">
-    <p>Complete purchase with a secure payment and receive all documents. Click here to fill the subscription form.</p>
-</div>
+                <p>Complete purchase with a secure payment and receive all documents.</p>
             </div>
         </div>
     </section>
@@ -1159,31 +1124,259 @@
                         <label>PHONE *</label>
                         <div class="phone-input-wrapper" style="display:flex;gap:0.5rem;">
                             <div class="custom-country-select" style="position:relative;width:110px;flex-shrink:0;" id="contactCountrySelect">
-                                <div class="country-trigger" style="padding:0.8rem;border-radius:8px;border:1px solid #d0e0d0;background:#f9fbf9;color:#0a1f0a;font-family:'Inter',sans-serif;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:0.3rem;" onclick="toggleContactDropdown()">
+                                <div class="country-trigger" style="padding:0.8rem;border-radius:8px;border:1px solid #d0e0d0;background:#f9fbf9;color:#0a1f0a;font-family:'Inter',sans-serif;font-size:0.85rem;display:flex;align-items:center;gap:0.3rem;" onclick="toggleContactDropdown()">
                                     <img src="https://flagcdn.com/w20/ng.png" alt="NG" class="flag-img" style="width:20px;height:14px;object-fit:cover;border-radius:2px;">
                                     <span class="country-code-text">+234</span>
                                     <span style="margin-left:auto;font-size:0.7rem;">▼</span>
                                 </div>
                                 <input type="hidden" name="country_code" value="+234" id="contactCountryCode">
                                 <div class="country-dropdown" id="contactDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:200px;overflow-y:auto;background:#ffffff;border:1px solid #d0e0d0;border-radius:8px;z-index:100;margin-top:4px;">
-                                    <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+234', 'https://flagcdn.com/w20/ng.png', 'NG')">
-                                        <img src="https://flagcdn.com/w20/ng.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +234
-                                    </div>
-                                    <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/us.png', 'US')">
-                                        <img src="https://flagcdn.com/w20/us.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +1
-                                    </div>
-                                    <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+44', 'https://flagcdn.com/w20/gb.png', 'GB')">
-                                        <img src="https://flagcdn.com/w20/gb.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +44
-                                    </div>
-                                    <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+233', 'https://flagcdn.com/w20/gh.png', 'GH')">
-                                        <img src="https://flagcdn.com/w20/gh.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +233
-                                    </div>
-                                    <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+254', 'https://flagcdn.com/w20/ke.png', 'KE')">
-                                        <img src="https://flagcdn.com/w20/ke.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +254
-                                    </div>
-                                    <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+27', 'https://flagcdn.com/w20/za.png', 'ZA')">
-                                        <img src="https://flagcdn.com/w20/za.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +27
-                                    </div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+234', 'https://flagcdn.com/w20/ng.png', 'NG')"><img src="https://flagcdn.com/w20/ng.png" alt="NG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Nigeria +234</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+93', 'https://flagcdn.com/w20/af.png', 'AF')"><img src="https://flagcdn.com/w20/af.png" alt="AF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Afghanistan +93</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+355', 'https://flagcdn.com/w20/al.png', 'AL')"><img src="https://flagcdn.com/w20/al.png" alt="AL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Albania +355</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+213', 'https://flagcdn.com/w20/dz.png', 'DZ')"><img src="https://flagcdn.com/w20/dz.png" alt="DZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Algeria +213</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/as.png', 'AS')"><img src="https://flagcdn.com/w20/as.png" alt="AS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> American Samoa +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+376', 'https://flagcdn.com/w20/ad.png', 'AD')"><img src="https://flagcdn.com/w20/ad.png" alt="AD" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Andorra +376</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+244', 'https://flagcdn.com/w20/ao.png', 'AO')"><img src="https://flagcdn.com/w20/ao.png" alt="AO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Angola +244</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/ai.png', 'AI')"><img src="https://flagcdn.com/w20/ai.png" alt="AI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Anguilla +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+672', 'https://flagcdn.com/w20/aq.png', 'AQ')"><img src="https://flagcdn.com/w20/aq.png" alt="AQ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Antarctica +672</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/ag.png', 'AG')"><img src="https://flagcdn.com/w20/ag.png" alt="AG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Antigua and Barbuda +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+54', 'https://flagcdn.com/w20/ar.png', 'AR')"><img src="https://flagcdn.com/w20/ar.png" alt="AR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Argentina +54</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+374', 'https://flagcdn.com/w20/am.png', 'AM')"><img src="https://flagcdn.com/w20/am.png" alt="AM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Armenia +374</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+297', 'https://flagcdn.com/w20/aw.png', 'AW')"><img src="https://flagcdn.com/w20/aw.png" alt="AW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Aruba +297</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+61', 'https://flagcdn.com/w20/au.png', 'AU')"><img src="https://flagcdn.com/w20/au.png" alt="AU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Australia +61</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+43', 'https://flagcdn.com/w20/at.png', 'AT')"><img src="https://flagcdn.com/w20/at.png" alt="AT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Austria +43</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+994', 'https://flagcdn.com/w20/az.png', 'AZ')"><img src="https://flagcdn.com/w20/az.png" alt="AZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Azerbaijan +994</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/bs.png', 'BS')"><img src="https://flagcdn.com/w20/bs.png" alt="BS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bahamas +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+973', 'https://flagcdn.com/w20/bh.png', 'BH')"><img src="https://flagcdn.com/w20/bh.png" alt="BH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bahrain +973</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+880', 'https://flagcdn.com/w20/bd.png', 'BD')"><img src="https://flagcdn.com/w20/bd.png" alt="BD" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bangladesh +880</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/bb.png', 'BB')"><img src="https://flagcdn.com/w20/bb.png" alt="BB" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Barbados +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+375', 'https://flagcdn.com/w20/by.png', 'BY')"><img src="https://flagcdn.com/w20/by.png" alt="BY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Belarus +375</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+32', 'https://flagcdn.com/w20/be.png', 'BE')"><img src="https://flagcdn.com/w20/be.png" alt="BE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Belgium +32</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+501', 'https://flagcdn.com/w20/bz.png', 'BZ')"><img src="https://flagcdn.com/w20/bz.png" alt="BZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Belize +501</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+229', 'https://flagcdn.com/w20/bj.png', 'BJ')"><img src="https://flagcdn.com/w20/bj.png" alt="BJ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Benin +229</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/bm.png', 'BM')"><img src="https://flagcdn.com/w20/bm.png" alt="BM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bermuda +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+975', 'https://flagcdn.com/w20/bt.png', 'BT')"><img src="https://flagcdn.com/w20/bt.png" alt="BT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bhutan +975</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+591', 'https://flagcdn.com/w20/bo.png', 'BO')"><img src="https://flagcdn.com/w20/bo.png" alt="BO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bolivia +591</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+599', 'https://flagcdn.com/w20/bq.png', 'BQ')"><img src="https://flagcdn.com/w20/bq.png" alt="BQ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bonaire, Sint Eustatius and Saba +599</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+387', 'https://flagcdn.com/w20/ba.png', 'BA')"><img src="https://flagcdn.com/w20/ba.png" alt="BA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bosnia and Herzegovina +387</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+267', 'https://flagcdn.com/w20/bw.png', 'BW')"><img src="https://flagcdn.com/w20/bw.png" alt="BW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Botswana +267</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+55', 'https://flagcdn.com/w20/br.png', 'BR')"><img src="https://flagcdn.com/w20/br.png" alt="BR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Brazil +55</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+246', 'https://flagcdn.com/w20/io.png', 'IO')"><img src="https://flagcdn.com/w20/io.png" alt="IO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> British Indian Ocean Territory +246</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/vg.png', 'VG')"><img src="https://flagcdn.com/w20/vg.png" alt="VG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> British Virgin Islands +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+673', 'https://flagcdn.com/w20/bn.png', 'BN')"><img src="https://flagcdn.com/w20/bn.png" alt="BN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Brunei +673</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+359', 'https://flagcdn.com/w20/bg.png', 'BG')"><img src="https://flagcdn.com/w20/bg.png" alt="BG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Bulgaria +359</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+226', 'https://flagcdn.com/w20/bf.png', 'BF')"><img src="https://flagcdn.com/w20/bf.png" alt="BF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Burkina Faso +226</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+257', 'https://flagcdn.com/w20/bi.png', 'BI')"><img src="https://flagcdn.com/w20/bi.png" alt="BI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Burundi +257</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+238', 'https://flagcdn.com/w20/cv.png', 'CV')"><img src="https://flagcdn.com/w20/cv.png" alt="CV" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cabo Verde +238</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+855', 'https://flagcdn.com/w20/kh.png', 'KH')"><img src="https://flagcdn.com/w20/kh.png" alt="KH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cambodia +855</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+237', 'https://flagcdn.com/w20/cm.png', 'CM')"><img src="https://flagcdn.com/w20/cm.png" alt="CM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cameroon +237</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/ca.png', 'CA')"><img src="https://flagcdn.com/w20/ca.png" alt="CA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Canada +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/ky.png', 'KY')"><img src="https://flagcdn.com/w20/ky.png" alt="KY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cayman Islands +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+236', 'https://flagcdn.com/w20/cf.png', 'CF')"><img src="https://flagcdn.com/w20/cf.png" alt="CF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Central African Republic +236</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+235', 'https://flagcdn.com/w20/td.png', 'TD')"><img src="https://flagcdn.com/w20/td.png" alt="TD" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Chad +235</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+56', 'https://flagcdn.com/w20/cl.png', 'CL')"><img src="https://flagcdn.com/w20/cl.png" alt="CL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Chile +56</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+86', 'https://flagcdn.com/w20/cn.png', 'CN')"><img src="https://flagcdn.com/w20/cn.png" alt="CN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> China +86</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+61', 'https://flagcdn.com/w20/cx.png', 'CX')"><img src="https://flagcdn.com/w20/cx.png" alt="CX" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Christmas Island +61</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+61', 'https://flagcdn.com/w20/cc.png', 'CC')"><img src="https://flagcdn.com/w20/cc.png" alt="CC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cocos (Keeling) Islands +61</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+57', 'https://flagcdn.com/w20/co.png', 'CO')"><img src="https://flagcdn.com/w20/co.png" alt="CO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Colombia +57</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+269', 'https://flagcdn.com/w20/km.png', 'KM')"><img src="https://flagcdn.com/w20/km.png" alt="KM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Comoros +269</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+242', 'https://flagcdn.com/w20/cg.png', 'CG')"><img src="https://flagcdn.com/w20/cg.png" alt="CG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Congo +242</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+682', 'https://flagcdn.com/w20/ck.png', 'CK')"><img src="https://flagcdn.com/w20/ck.png" alt="CK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cook Islands +682</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+506', 'https://flagcdn.com/w20/cr.png', 'CR')"><img src="https://flagcdn.com/w20/cr.png" alt="CR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Costa Rica +506</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+225', 'https://flagcdn.com/w20/ci.png', 'CI')"><img src="https://flagcdn.com/w20/ci.png" alt="CI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Côte d'Ivoire +225</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+385', 'https://flagcdn.com/w20/hr.png', 'HR')"><img src="https://flagcdn.com/w20/hr.png" alt="HR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Croatia +385</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+53', 'https://flagcdn.com/w20/cu.png', 'CU')"><img src="https://flagcdn.com/w20/cu.png" alt="CU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cuba +53</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+599', 'https://flagcdn.com/w20/cw.png', 'CW')"><img src="https://flagcdn.com/w20/cw.png" alt="CW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Curaçao +599</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+357', 'https://flagcdn.com/w20/cy.png', 'CY')"><img src="https://flagcdn.com/w20/cy.png" alt="CY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Cyprus +357</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+420', 'https://flagcdn.com/w20/cz.png', 'CZ')"><img src="https://flagcdn.com/w20/cz.png" alt="CZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Czechia +420</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+243', 'https://flagcdn.com/w20/cd.png', 'CD')"><img src="https://flagcdn.com/w20/cd.png" alt="CD" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Democratic Republic of the Congo +243</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+45', 'https://flagcdn.com/w20/dk.png', 'DK')"><img src="https://flagcdn.com/w20/dk.png" alt="DK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Denmark +45</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+253', 'https://flagcdn.com/w20/dj.png', 'DJ')"><img src="https://flagcdn.com/w20/dj.png" alt="DJ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Djibouti +253</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/dm.png', 'DM')"><img src="https://flagcdn.com/w20/dm.png" alt="DM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Dominica +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/do.png', 'DO')"><img src="https://flagcdn.com/w20/do.png" alt="DO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Dominican Republic +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+593', 'https://flagcdn.com/w20/ec.png', 'EC')"><img src="https://flagcdn.com/w20/ec.png" alt="EC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Ecuador +593</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+20', 'https://flagcdn.com/w20/eg.png', 'EG')"><img src="https://flagcdn.com/w20/eg.png" alt="EG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Egypt +20</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+503', 'https://flagcdn.com/w20/sv.png', 'SV')"><img src="https://flagcdn.com/w20/sv.png" alt="SV" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> El Salvador +503</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+240', 'https://flagcdn.com/w20/gq.png', 'GQ')"><img src="https://flagcdn.com/w20/gq.png" alt="GQ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Equatorial Guinea +240</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+291', 'https://flagcdn.com/w20/er.png', 'ER')"><img src="https://flagcdn.com/w20/er.png" alt="ER" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Eritrea +291</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+372', 'https://flagcdn.com/w20/ee.png', 'EE')"><img src="https://flagcdn.com/w20/ee.png" alt="EE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Estonia +372</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+268', 'https://flagcdn.com/w20/sz.png', 'SZ')"><img src="https://flagcdn.com/w20/sz.png" alt="SZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Eswatini +268</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+251', 'https://flagcdn.com/w20/et.png', 'ET')"><img src="https://flagcdn.com/w20/et.png" alt="ET" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Ethiopia +251</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+500', 'https://flagcdn.com/w20/fk.png', 'FK')"><img src="https://flagcdn.com/w20/fk.png" alt="FK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Falkland Islands +500</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+298', 'https://flagcdn.com/w20/fo.png', 'FO')"><img src="https://flagcdn.com/w20/fo.png" alt="FO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Faroe Islands +298</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+679', 'https://flagcdn.com/w20/fj.png', 'FJ')"><img src="https://flagcdn.com/w20/fj.png" alt="FJ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Fiji +679</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+358', 'https://flagcdn.com/w20/fi.png', 'FI')"><img src="https://flagcdn.com/w20/fi.png" alt="FI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Finland +358</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+33', 'https://flagcdn.com/w20/fr.png', 'FR')"><img src="https://flagcdn.com/w20/fr.png" alt="FR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> France +33</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+594', 'https://flagcdn.com/w20/gf.png', 'GF')"><img src="https://flagcdn.com/w20/gf.png" alt="GF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> French Guiana +594</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+689', 'https://flagcdn.com/w20/pf.png', 'PF')"><img src="https://flagcdn.com/w20/pf.png" alt="PF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> French Polynesia +689</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+241', 'https://flagcdn.com/w20/ga.png', 'GA')"><img src="https://flagcdn.com/w20/ga.png" alt="GA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Gabon +241</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+220', 'https://flagcdn.com/w20/gm.png', 'GM')"><img src="https://flagcdn.com/w20/gm.png" alt="GM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Gambia +220</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+995', 'https://flagcdn.com/w20/ge.png', 'GE')"><img src="https://flagcdn.com/w20/ge.png" alt="GE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Georgia +995</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+49', 'https://flagcdn.com/w20/de.png', 'DE')"><img src="https://flagcdn.com/w20/de.png" alt="DE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Germany +49</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+233', 'https://flagcdn.com/w20/gh.png', 'GH')"><img src="https://flagcdn.com/w20/gh.png" alt="GH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Ghana +233</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+350', 'https://flagcdn.com/w20/gi.png', 'GI')"><img src="https://flagcdn.com/w20/gi.png" alt="GI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Gibraltar +350</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+30', 'https://flagcdn.com/w20/gr.png', 'GR')"><img src="https://flagcdn.com/w20/gr.png" alt="GR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Greece +30</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+299', 'https://flagcdn.com/w20/gl.png', 'GL')"><img src="https://flagcdn.com/w20/gl.png" alt="GL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Greenland +299</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/gd.png', 'GD')"><img src="https://flagcdn.com/w20/gd.png" alt="GD" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Grenada +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+590', 'https://flagcdn.com/w20/gp.png', 'GP')"><img src="https://flagcdn.com/w20/gp.png" alt="GP" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Guadeloupe +590</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/gu.png', 'GU')"><img src="https://flagcdn.com/w20/gu.png" alt="GU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Guam +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+502', 'https://flagcdn.com/w20/gt.png', 'GT')"><img src="https://flagcdn.com/w20/gt.png" alt="GT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Guatemala +502</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+44', 'https://flagcdn.com/w20/gg.png', 'GG')"><img src="https://flagcdn.com/w20/gg.png" alt="GG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Guernsey +44</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+224', 'https://flagcdn.com/w20/gn.png', 'GN')"><img src="https://flagcdn.com/w20/gn.png" alt="GN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Guinea +224</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+245', 'https://flagcdn.com/w20/gw.png', 'GW')"><img src="https://flagcdn.com/w20/gw.png" alt="GW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Guinea-Bissau +245</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+592', 'https://flagcdn.com/w20/gy.png', 'GY')"><img src="https://flagcdn.com/w20/gy.png" alt="GY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Guyana +592</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+509', 'https://flagcdn.com/w20/ht.png', 'HT')"><img src="https://flagcdn.com/w20/ht.png" alt="HT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Haiti +509</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+504', 'https://flagcdn.com/w20/hn.png', 'HN')"><img src="https://flagcdn.com/w20/hn.png" alt="HN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Honduras +504</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+852', 'https://flagcdn.com/w20/hk.png', 'HK')"><img src="https://flagcdn.com/w20/hk.png" alt="HK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Hong Kong +852</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+36', 'https://flagcdn.com/w20/hu.png', 'HU')"><img src="https://flagcdn.com/w20/hu.png" alt="HU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Hungary +36</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+354', 'https://flagcdn.com/w20/is.png', 'IS')"><img src="https://flagcdn.com/w20/is.png" alt="IS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Iceland +354</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+91', 'https://flagcdn.com/w20/in.png', 'IN')"><img src="https://flagcdn.com/w20/in.png" alt="IN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> India +91</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+62', 'https://flagcdn.com/w20/id.png', 'ID')"><img src="https://flagcdn.com/w20/id.png" alt="ID" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Indonesia +62</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+98', 'https://flagcdn.com/w20/ir.png', 'IR')"><img src="https://flagcdn.com/w20/ir.png" alt="IR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Iran +98</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+964', 'https://flagcdn.com/w20/iq.png', 'IQ')"><img src="https://flagcdn.com/w20/iq.png" alt="IQ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Iraq +964</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+353', 'https://flagcdn.com/w20/ie.png', 'IE')"><img src="https://flagcdn.com/w20/ie.png" alt="IE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Ireland +353</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+44', 'https://flagcdn.com/w20/im.png', 'IM')"><img src="https://flagcdn.com/w20/im.png" alt="IM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Isle of Man +44</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+972', 'https://flagcdn.com/w20/il.png', 'IL')"><img src="https://flagcdn.com/w20/il.png" alt="IL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Israel +972</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+39', 'https://flagcdn.com/w20/it.png', 'IT')"><img src="https://flagcdn.com/w20/it.png" alt="IT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Italy +39</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/jm.png', 'JM')"><img src="https://flagcdn.com/w20/jm.png" alt="JM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Jamaica +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+81', 'https://flagcdn.com/w20/jp.png', 'JP')"><img src="https://flagcdn.com/w20/jp.png" alt="JP" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Japan +81</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+44', 'https://flagcdn.com/w20/je.png', 'JE')"><img src="https://flagcdn.com/w20/je.png" alt="JE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Jersey +44</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+962', 'https://flagcdn.com/w20/jo.png', 'JO')"><img src="https://flagcdn.com/w20/jo.png" alt="JO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Jordan +962</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+7', 'https://flagcdn.com/w20/kz.png', 'KZ')"><img src="https://flagcdn.com/w20/kz.png" alt="KZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Kazakhstan +7</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+254', 'https://flagcdn.com/w20/ke.png', 'KE')"><img src="https://flagcdn.com/w20/ke.png" alt="KE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Kenya +254</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+686', 'https://flagcdn.com/w20/ki.png', 'KI')"><img src="https://flagcdn.com/w20/ki.png" alt="KI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Kiribati +686</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+383', 'https://flagcdn.com/w20/xk.png', 'XK')"><img src="https://flagcdn.com/w20/xk.png" alt="XK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Kosovo +383</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+965', 'https://flagcdn.com/w20/kw.png', 'KW')"><img src="https://flagcdn.com/w20/kw.png" alt="KW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Kuwait +965</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+996', 'https://flagcdn.com/w20/kg.png', 'KG')"><img src="https://flagcdn.com/w20/kg.png" alt="KG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Kyrgyzstan +996</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+856', 'https://flagcdn.com/w20/la.png', 'LA')"><img src="https://flagcdn.com/w20/la.png" alt="LA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Laos +856</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+371', 'https://flagcdn.com/w20/lv.png', 'LV')"><img src="https://flagcdn.com/w20/lv.png" alt="LV" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Latvia +371</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+961', 'https://flagcdn.com/w20/lb.png', 'LB')"><img src="https://flagcdn.com/w20/lb.png" alt="LB" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Lebanon +961</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+266', 'https://flagcdn.com/w20/ls.png', 'LS')"><img src="https://flagcdn.com/w20/ls.png" alt="LS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Lesotho +266</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+231', 'https://flagcdn.com/w20/lr.png', 'LR')"><img src="https://flagcdn.com/w20/lr.png" alt="LR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Liberia +231</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+218', 'https://flagcdn.com/w20/ly.png', 'LY')"><img src="https://flagcdn.com/w20/ly.png" alt="LY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Libya +218</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+423', 'https://flagcdn.com/w20/li.png', 'LI')"><img src="https://flagcdn.com/w20/li.png" alt="LI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Liechtenstein +423</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+370', 'https://flagcdn.com/w20/lt.png', 'LT')"><img src="https://flagcdn.com/w20/lt.png" alt="LT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Lithuania +370</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+352', 'https://flagcdn.com/w20/lu.png', 'LU')"><img src="https://flagcdn.com/w20/lu.png" alt="LU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Luxembourg +352</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+853', 'https://flagcdn.com/w20/mo.png', 'MO')"><img src="https://flagcdn.com/w20/mo.png" alt="MO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Macao +853</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+261', 'https://flagcdn.com/w20/mg.png', 'MG')"><img src="https://flagcdn.com/w20/mg.png" alt="MG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Madagascar +261</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+265', 'https://flagcdn.com/w20/mw.png', 'MW')"><img src="https://flagcdn.com/w20/mw.png" alt="MW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Malawi +265</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+60', 'https://flagcdn.com/w20/my.png', 'MY')"><img src="https://flagcdn.com/w20/my.png" alt="MY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Malaysia +60</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+960', 'https://flagcdn.com/w20/mv.png', 'MV')"><img src="https://flagcdn.com/w20/mv.png" alt="MV" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Maldives +960</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+223', 'https://flagcdn.com/w20/ml.png', 'ML')"><img src="https://flagcdn.com/w20/ml.png" alt="ML" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Mali +223</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+356', 'https://flagcdn.com/w20/mt.png', 'MT')"><img src="https://flagcdn.com/w20/mt.png" alt="MT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Malta +356</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+692', 'https://flagcdn.com/w20/mh.png', 'MH')"><img src="https://flagcdn.com/w20/mh.png" alt="MH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Marshall Islands +692</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+596', 'https://flagcdn.com/w20/mq.png', 'MQ')"><img src="https://flagcdn.com/w20/mq.png" alt="MQ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Martinique +596</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+222', 'https://flagcdn.com/w20/mr.png', 'MR')"><img src="https://flagcdn.com/w20/mr.png" alt="MR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Mauritania +222</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+230', 'https://flagcdn.com/w20/mu.png', 'MU')"><img src="https://flagcdn.com/w20/mu.png" alt="MU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Mauritius +230</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+262', 'https://flagcdn.com/w20/yt.png', 'YT')"><img src="https://flagcdn.com/w20/yt.png" alt="YT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Mayotte +262</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+52', 'https://flagcdn.com/w20/mx.png', 'MX')"><img src="https://flagcdn.com/w20/mx.png" alt="MX" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Mexico +52</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+691', 'https://flagcdn.com/w20/fm.png', 'FM')"><img src="https://flagcdn.com/w20/fm.png" alt="FM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Micronesia +691</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+373', 'https://flagcdn.com/w20/md.png', 'MD')"><img src="https://flagcdn.com/w20/md.png" alt="MD" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Moldova +373</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+377', 'https://flagcdn.com/w20/mc.png', 'MC')"><img src="https://flagcdn.com/w20/mc.png" alt="MC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Monaco +377</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+976', 'https://flagcdn.com/w20/mn.png', 'MN')"><img src="https://flagcdn.com/w20/mn.png" alt="MN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Mongolia +976</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+382', 'https://flagcdn.com/w20/me.png', 'ME')"><img src="https://flagcdn.com/w20/me.png" alt="ME" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Montenegro +382</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/ms.png', 'MS')"><img src="https://flagcdn.com/w20/ms.png" alt="MS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Montserrat +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+212', 'https://flagcdn.com/w20/ma.png', 'MA')"><img src="https://flagcdn.com/w20/ma.png" alt="MA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Morocco +212</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+258', 'https://flagcdn.com/w20/mz.png', 'MZ')"><img src="https://flagcdn.com/w20/mz.png" alt="MZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Mozambique +258</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+95', 'https://flagcdn.com/w20/mm.png', 'MM')"><img src="https://flagcdn.com/w20/mm.png" alt="MM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Myanmar +95</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+264', 'https://flagcdn.com/w20/na.png', 'NA')"><img src="https://flagcdn.com/w20/na.png" alt="NA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Namibia +264</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+674', 'https://flagcdn.com/w20/nr.png', 'NR')"><img src="https://flagcdn.com/w20/nr.png" alt="NR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Nauru +674</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+977', 'https://flagcdn.com/w20/np.png', 'NP')"><img src="https://flagcdn.com/w20/np.png" alt="NP" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Nepal +977</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+31', 'https://flagcdn.com/w20/nl.png', 'NL')"><img src="https://flagcdn.com/w20/nl.png" alt="NL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Netherlands +31</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+687', 'https://flagcdn.com/w20/nc.png', 'NC')"><img src="https://flagcdn.com/w20/nc.png" alt="NC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> New Caledonia +687</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+64', 'https://flagcdn.com/w20/nz.png', 'NZ')"><img src="https://flagcdn.com/w20/nz.png" alt="NZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> New Zealand +64</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+505', 'https://flagcdn.com/w20/ni.png', 'NI')"><img src="https://flagcdn.com/w20/ni.png" alt="NI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Nicaragua +505</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+227', 'https://flagcdn.com/w20/ne.png', 'NE')"><img src="https://flagcdn.com/w20/ne.png" alt="NE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Niger +227</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+683', 'https://flagcdn.com/w20/nu.png', 'NU')"><img src="https://flagcdn.com/w20/nu.png" alt="NU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Niue +683</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+672', 'https://flagcdn.com/w20/nf.png', 'NF')"><img src="https://flagcdn.com/w20/nf.png" alt="NF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Norfolk Island +672</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+850', 'https://flagcdn.com/w20/kp.png', 'KP')"><img src="https://flagcdn.com/w20/kp.png" alt="KP" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> North Korea +850</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+389', 'https://flagcdn.com/w20/mk.png', 'MK')"><img src="https://flagcdn.com/w20/mk.png" alt="MK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> North Macedonia +389</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/mp.png', 'MP')"><img src="https://flagcdn.com/w20/mp.png" alt="MP" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Northern Mariana Islands +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+47', 'https://flagcdn.com/w20/no.png', 'NO')"><img src="https://flagcdn.com/w20/no.png" alt="NO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Norway +47</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+968', 'https://flagcdn.com/w20/om.png', 'OM')"><img src="https://flagcdn.com/w20/om.png" alt="OM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Oman +968</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+92', 'https://flagcdn.com/w20/pk.png', 'PK')"><img src="https://flagcdn.com/w20/pk.png" alt="PK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Pakistan +92</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+680', 'https://flagcdn.com/w20/pw.png', 'PW')"><img src="https://flagcdn.com/w20/pw.png" alt="PW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Palau +680</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+970', 'https://flagcdn.com/w20/ps.png', 'PS')"><img src="https://flagcdn.com/w20/ps.png" alt="PS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Palestine +970</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+507', 'https://flagcdn.com/w20/pa.png', 'PA')"><img src="https://flagcdn.com/w20/pa.png" alt="PA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Panama +507</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+675', 'https://flagcdn.com/w20/pg.png', 'PG')"><img src="https://flagcdn.com/w20/pg.png" alt="PG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Papua New Guinea +675</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+595', 'https://flagcdn.com/w20/py.png', 'PY')"><img src="https://flagcdn.com/w20/py.png" alt="PY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Paraguay +595</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+51', 'https://flagcdn.com/w20/pe.png', 'PE')"><img src="https://flagcdn.com/w20/pe.png" alt="PE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Peru +51</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+63', 'https://flagcdn.com/w20/ph.png', 'PH')"><img src="https://flagcdn.com/w20/ph.png" alt="PH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Philippines +63</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+64', 'https://flagcdn.com/w20/pn.png', 'PN')"><img src="https://flagcdn.com/w20/pn.png" alt="PN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Pitcairn +64</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+48', 'https://flagcdn.com/w20/pl.png', 'PL')"><img src="https://flagcdn.com/w20/pl.png" alt="PL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Poland +48</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+351', 'https://flagcdn.com/w20/pt.png', 'PT')"><img src="https://flagcdn.com/w20/pt.png" alt="PT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Portugal +351</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/pr.png', 'PR')"><img src="https://flagcdn.com/w20/pr.png" alt="PR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Puerto Rico +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+974', 'https://flagcdn.com/w20/qa.png', 'QA')"><img src="https://flagcdn.com/w20/qa.png" alt="QA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Qatar +974</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+262', 'https://flagcdn.com/w20/re.png', 'RE')"><img src="https://flagcdn.com/w20/re.png" alt="RE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Réunion +262</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+40', 'https://flagcdn.com/w20/ro.png', 'RO')"><img src="https://flagcdn.com/w20/ro.png" alt="RO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Romania +40</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+7', 'https://flagcdn.com/w20/ru.png', 'RU')"><img src="https://flagcdn.com/w20/ru.png" alt="RU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Russia +7</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+250', 'https://flagcdn.com/w20/rw.png', 'RW')"><img src="https://flagcdn.com/w20/rw.png" alt="RW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Rwanda +250</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+590', 'https://flagcdn.com/w20/bl.png', 'BL')"><img src="https://flagcdn.com/w20/bl.png" alt="BL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saint Barthélemy +590</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+290', 'https://flagcdn.com/w20/sh.png', 'SH')"><img src="https://flagcdn.com/w20/sh.png" alt="SH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saint Helena +290</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/kn.png', 'KN')"><img src="https://flagcdn.com/w20/kn.png" alt="KN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saint Kitts and Nevis +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/lc.png', 'LC')"><img src="https://flagcdn.com/w20/lc.png" alt="LC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saint Lucia +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+590', 'https://flagcdn.com/w20/mf.png', 'MF')"><img src="https://flagcdn.com/w20/mf.png" alt="MF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saint Martin +590</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+508', 'https://flagcdn.com/w20/pm.png', 'PM')"><img src="https://flagcdn.com/w20/pm.png" alt="PM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saint Pierre and Miquelon +508</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/vc.png', 'VC')"><img src="https://flagcdn.com/w20/vc.png" alt="VC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saint Vincent and the Grenadines +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+685', 'https://flagcdn.com/w20/ws.png', 'WS')"><img src="https://flagcdn.com/w20/ws.png" alt="WS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Samoa +685</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+378', 'https://flagcdn.com/w20/sm.png', 'SM')"><img src="https://flagcdn.com/w20/sm.png" alt="SM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> San Marino +378</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+239', 'https://flagcdn.com/w20/st.png', 'ST')"><img src="https://flagcdn.com/w20/st.png" alt="ST" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> São Tomé and Príncipe +239</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+966', 'https://flagcdn.com/w20/sa.png', 'SA')"><img src="https://flagcdn.com/w20/sa.png" alt="SA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Saudi Arabia +966</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+221', 'https://flagcdn.com/w20/sn.png', 'SN')"><img src="https://flagcdn.com/w20/sn.png" alt="SN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Senegal +221</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+381', 'https://flagcdn.com/w20/rs.png', 'RS')"><img src="https://flagcdn.com/w20/rs.png" alt="RS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Serbia +381</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+248', 'https://flagcdn.com/w20/sc.png', 'SC')"><img src="https://flagcdn.com/w20/sc.png" alt="SC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Seychelles +248</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+232', 'https://flagcdn.com/w20/sl.png', 'SL')"><img src="https://flagcdn.com/w20/sl.png" alt="SL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Sierra Leone +232</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+65', 'https://flagcdn.com/w20/sg.png', 'SG')"><img src="https://flagcdn.com/w20/sg.png" alt="SG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Singapore +65</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/sx.png', 'SX')"><img src="https://flagcdn.com/w20/sx.png" alt="SX" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Sint Maarten +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+421', 'https://flagcdn.com/w20/sk.png', 'SK')"><img src="https://flagcdn.com/w20/sk.png" alt="SK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Slovakia +421</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+386', 'https://flagcdn.com/w20/si.png', 'SI')"><img src="https://flagcdn.com/w20/si.png" alt="SI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Slovenia +386</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+677', 'https://flagcdn.com/w20/sb.png', 'SB')"><img src="https://flagcdn.com/w20/sb.png" alt="SB" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Solomon Islands +677</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+252', 'https://flagcdn.com/w20/so.png', 'SO')"><img src="https://flagcdn.com/w20/so.png" alt="SO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Somalia +252</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+27', 'https://flagcdn.com/w20/za.png', 'ZA')"><img src="https://flagcdn.com/w20/za.png" alt="ZA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> South Africa +27</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+500', 'https://flagcdn.com/w20/gs.png', 'GS')"><img src="https://flagcdn.com/w20/gs.png" alt="GS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> South Georgia and South Sandwich Islands +500</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+82', 'https://flagcdn.com/w20/kr.png', 'KR')"><img src="https://flagcdn.com/w20/kr.png" alt="KR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> South Korea +82</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+211', 'https://flagcdn.com/w20/ss.png', 'SS')"><img src="https://flagcdn.com/w20/ss.png" alt="SS" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> South Sudan +211</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+34', 'https://flagcdn.com/w20/es.png', 'ES')"><img src="https://flagcdn.com/w20/es.png" alt="ES" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Spain +34</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+94', 'https://flagcdn.com/w20/lk.png', 'LK')"><img src="https://flagcdn.com/w20/lk.png" alt="LK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Sri Lanka +94</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+249', 'https://flagcdn.com/w20/sd.png', 'SD')"><img src="https://flagcdn.com/w20/sd.png" alt="SD" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Sudan +249</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+597', 'https://flagcdn.com/w20/sr.png', 'SR')"><img src="https://flagcdn.com/w20/sr.png" alt="SR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Suriname +597</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+47', 'https://flagcdn.com/w20/sj.png', 'SJ')"><img src="https://flagcdn.com/w20/sj.png" alt="SJ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Svalbard and Jan Mayen +47</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+46', 'https://flagcdn.com/w20/se.png', 'SE')"><img src="https://flagcdn.com/w20/se.png" alt="SE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Sweden +46</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+41', 'https://flagcdn.com/w20/ch.png', 'CH')"><img src="https://flagcdn.com/w20/ch.png" alt="CH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Switzerland +41</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+963', 'https://flagcdn.com/w20/sy.png', 'SY')"><img src="https://flagcdn.com/w20/sy.png" alt="SY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Syria +963</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+886', 'https://flagcdn.com/w20/tw.png', 'TW')"><img src="https://flagcdn.com/w20/tw.png" alt="TW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Taiwan +886</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+992', 'https://flagcdn.com/w20/tj.png', 'TJ')"><img src="https://flagcdn.com/w20/tj.png" alt="TJ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Tajikistan +992</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+255', 'https://flagcdn.com/w20/tz.png', 'TZ')"><img src="https://flagcdn.com/w20/tz.png" alt="TZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Tanzania +255</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+66', 'https://flagcdn.com/w20/th.png', 'TH')"><img src="https://flagcdn.com/w20/th.png" alt="TH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Thailand +66</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+670', 'https://flagcdn.com/w20/tl.png', 'TL')"><img src="https://flagcdn.com/w20/tl.png" alt="TL" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Timor-Leste +670</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+228', 'https://flagcdn.com/w20/tg.png', 'TG')"><img src="https://flagcdn.com/w20/tg.png" alt="TG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Togo +228</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+690', 'https://flagcdn.com/w20/tk.png', 'TK')"><img src="https://flagcdn.com/w20/tk.png" alt="TK" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Tokelau +690</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+676', 'https://flagcdn.com/w20/to.png', 'TO')"><img src="https://flagcdn.com/w20/to.png" alt="TO" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Tonga +676</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/tt.png', 'TT')"><img src="https://flagcdn.com/w20/tt.png" alt="TT" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Trinidad and Tobago +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+216', 'https://flagcdn.com/w20/tn.png', 'TN')"><img src="https://flagcdn.com/w20/tn.png" alt="TN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Tunisia +216</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+90', 'https://flagcdn.com/w20/tr.png', 'TR')"><img src="https://flagcdn.com/w20/tr.png" alt="TR" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Türkiye +90</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+993', 'https://flagcdn.com/w20/tm.png', 'TM')"><img src="https://flagcdn.com/w20/tm.png" alt="TM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Turkmenistan +993</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/tc.png', 'TC')"><img src="https://flagcdn.com/w20/tc.png" alt="TC" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Turks and Caicos Islands +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+688', 'https://flagcdn.com/w20/tv.png', 'TV')"><img src="https://flagcdn.com/w20/tv.png" alt="TV" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Tuvalu +688</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+256', 'https://flagcdn.com/w20/ug.png', 'UG')"><img src="https://flagcdn.com/w20/ug.png" alt="UG" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Uganda +256</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+380', 'https://flagcdn.com/w20/ua.png', 'UA')"><img src="https://flagcdn.com/w20/ua.png" alt="UA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Ukraine +380</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+971', 'https://flagcdn.com/w20/ae.png', 'AE')"><img src="https://flagcdn.com/w20/ae.png" alt="AE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> United Arab Emirates +971</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+44', 'https://flagcdn.com/w20/gb.png', 'GB')"><img src="https://flagcdn.com/w20/gb.png" alt="GB" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> United Kingdom +44</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/us.png', 'US')"><img src="https://flagcdn.com/w20/us.png" alt="US" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> United States +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/um.png', 'UM')"><img src="https://flagcdn.com/w20/um.png" alt="UM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> United States Minor Outlying Islands +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+598', 'https://flagcdn.com/w20/uy.png', 'UY')"><img src="https://flagcdn.com/w20/uy.png" alt="UY" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Uruguay +598</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+1', 'https://flagcdn.com/w20/vi.png', 'VI')"><img src="https://flagcdn.com/w20/vi.png" alt="VI" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> U.S. Virgin Islands +1</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+998', 'https://flagcdn.com/w20/uz.png', 'UZ')"><img src="https://flagcdn.com/w20/uz.png" alt="UZ" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Uzbekistan +998</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+678', 'https://flagcdn.com/w20/vu.png', 'VU')"><img src="https://flagcdn.com/w20/vu.png" alt="VU" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Vanuatu +678</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+39', 'https://flagcdn.com/w20/va.png', 'VA')"><img src="https://flagcdn.com/w20/va.png" alt="VA" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Vatican City +39</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+58', 'https://flagcdn.com/w20/ve.png', 'VE')"><img src="https://flagcdn.com/w20/ve.png" alt="VE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Venezuela +58</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+84', 'https://flagcdn.com/w20/vn.png', 'VN')"><img src="https://flagcdn.com/w20/vn.png" alt="VN" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Vietnam +84</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+681', 'https://flagcdn.com/w20/wf.png', 'WF')"><img src="https://flagcdn.com/w20/wf.png" alt="WF" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Wallis and Futuna +681</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+212', 'https://flagcdn.com/w20/eh.png', 'EH')"><img src="https://flagcdn.com/w20/eh.png" alt="EH" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Western Sahara +212</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+967', 'https://flagcdn.com/w20/ye.png', 'YE')"><img src="https://flagcdn.com/w20/ye.png" alt="YE" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Yemen +967</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+260', 'https://flagcdn.com/w20/zm.png', 'ZM')"><img src="https://flagcdn.com/w20/zm.png" alt="ZM" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Zambia +260</div>
+<div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectContactCountry('+263', 'https://flagcdn.com/w20/zw.png', 'ZW')"><img src="https://flagcdn.com/w20/zw.png" alt="ZW" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> Zimbabwe +263</div>
                                 </div>
                             </div>
                             <input type="tel" name="phone" placeholder="your phone number" style="flex:1;padding:0.8rem;border-radius:8px;border:1px solid #d0e0d0;background:#f9fbf9;color:#0a1f0a;font-family:'Inter',sans-serif;font-size:1rem;" required>
@@ -1216,22 +1409,15 @@
         </div>
     </footer>
 
+    
+
     <script>
-        // Force all links to open in same tab - prevent any external tab opening
+        // Keep all links on the same tab.
         document.addEventListener('click', function(e) {
             var link = e.target.closest('a');
-            if (link && link.href) {
-                // Remove any dynamically added target attributes
-                link.removeAttribute('target');
-                // If the link is external and would open in new tab, prevent it
-                if (link.getAttribute('target') === '_blank') {
-                    e.preventDefault();
-                    window.location.href = link.href;
-                }
-            }
+            if (link) link.removeAttribute('target');
         }, true);
 
-        // Also use MutationObserver to catch any dynamically added target attributes
         var observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'target') {
@@ -1245,196 +1431,1302 @@
             document.getElementById('mobileNav').classList.toggle('active');
             document.getElementById('mobileOverlay').classList.toggle('active');
         }
-        function openForm() {
-    document.getElementById('subscriptionModal').style.display = 'block';
-    // This stops the background from scrolling when the form is open
-    document.body.style.overflow = 'hidden'; 
-}
-
-function closeForm() {
-    document.getElementById('subscriptionModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Close the form if the user clicks outside the box
-window.onclick = function(event) {
-    // Prevent any link from opening in new tab
-    var link = event.target.closest('a');
-    if (link && link.getAttribute('target') === '_blank') {
-        link.removeAttribute('target');
-    }
-    var modal = document.getElementById('subscriptionModal');
-    if (event.target == modal) {
-        closeForm();
-    }
-    // Close country dropdowns when clicking outside
-    if (!event.target.closest('.custom-country-select')) {
-        document.querySelectorAll('.country-dropdown').forEach(function(d) {
-            d.style.display = 'none';
+        window.addEventListener('click', function(event) {
+if (!event.target.closest('.custom-country-select')) {
+                document.querySelectorAll('.country-dropdown').forEach(function(d) {
+                    d.style.display = 'none';
+                });
+            }
         });
+
+        const countryCodes = [
+    {
+        "name": "Afghanistan",
+        "iso": "af",
+        "dial": "+93"
+    },
+    {
+        "name": "Albania",
+        "iso": "al",
+        "dial": "+355"
+    },
+    {
+        "name": "Algeria",
+        "iso": "dz",
+        "dial": "+213"
+    },
+    {
+        "name": "American Samoa",
+        "iso": "as",
+        "dial": "+1"
+    },
+    {
+        "name": "Andorra",
+        "iso": "ad",
+        "dial": "+376"
+    },
+    {
+        "name": "Angola",
+        "iso": "ao",
+        "dial": "+244"
+    },
+    {
+        "name": "Anguilla",
+        "iso": "ai",
+        "dial": "+1"
+    },
+    {
+        "name": "Antarctica",
+        "iso": "aq",
+        "dial": "+672"
+    },
+    {
+        "name": "Antigua and Barbuda",
+        "iso": "ag",
+        "dial": "+1"
+    },
+    {
+        "name": "Argentina",
+        "iso": "ar",
+        "dial": "+54"
+    },
+    {
+        "name": "Armenia",
+        "iso": "am",
+        "dial": "+374"
+    },
+    {
+        "name": "Aruba",
+        "iso": "aw",
+        "dial": "+297"
+    },
+    {
+        "name": "Australia",
+        "iso": "au",
+        "dial": "+61"
+    },
+    {
+        "name": "Austria",
+        "iso": "at",
+        "dial": "+43"
+    },
+    {
+        "name": "Azerbaijan",
+        "iso": "az",
+        "dial": "+994"
+    },
+    {
+        "name": "Bahamas",
+        "iso": "bs",
+        "dial": "+1"
+    },
+    {
+        "name": "Bahrain",
+        "iso": "bh",
+        "dial": "+973"
+    },
+    {
+        "name": "Bangladesh",
+        "iso": "bd",
+        "dial": "+880"
+    },
+    {
+        "name": "Barbados",
+        "iso": "bb",
+        "dial": "+1"
+    },
+    {
+        "name": "Belarus",
+        "iso": "by",
+        "dial": "+375"
+    },
+    {
+        "name": "Belgium",
+        "iso": "be",
+        "dial": "+32"
+    },
+    {
+        "name": "Belize",
+        "iso": "bz",
+        "dial": "+501"
+    },
+    {
+        "name": "Benin",
+        "iso": "bj",
+        "dial": "+229"
+    },
+    {
+        "name": "Bermuda",
+        "iso": "bm",
+        "dial": "+1"
+    },
+    {
+        "name": "Bhutan",
+        "iso": "bt",
+        "dial": "+975"
+    },
+    {
+        "name": "Bolivia",
+        "iso": "bo",
+        "dial": "+591"
+    },
+    {
+        "name": "Bonaire, Sint Eustatius and Saba",
+        "iso": "bq",
+        "dial": "+599"
+    },
+    {
+        "name": "Bosnia and Herzegovina",
+        "iso": "ba",
+        "dial": "+387"
+    },
+    {
+        "name": "Botswana",
+        "iso": "bw",
+        "dial": "+267"
+    },
+    {
+        "name": "Brazil",
+        "iso": "br",
+        "dial": "+55"
+    },
+    {
+        "name": "British Indian Ocean Territory",
+        "iso": "io",
+        "dial": "+246"
+    },
+    {
+        "name": "British Virgin Islands",
+        "iso": "vg",
+        "dial": "+1"
+    },
+    {
+        "name": "Brunei",
+        "iso": "bn",
+        "dial": "+673"
+    },
+    {
+        "name": "Bulgaria",
+        "iso": "bg",
+        "dial": "+359"
+    },
+    {
+        "name": "Burkina Faso",
+        "iso": "bf",
+        "dial": "+226"
+    },
+    {
+        "name": "Burundi",
+        "iso": "bi",
+        "dial": "+257"
+    },
+    {
+        "name": "Cabo Verde",
+        "iso": "cv",
+        "dial": "+238"
+    },
+    {
+        "name": "Cambodia",
+        "iso": "kh",
+        "dial": "+855"
+    },
+    {
+        "name": "Cameroon",
+        "iso": "cm",
+        "dial": "+237"
+    },
+    {
+        "name": "Canada",
+        "iso": "ca",
+        "dial": "+1"
+    },
+    {
+        "name": "Cayman Islands",
+        "iso": "ky",
+        "dial": "+1"
+    },
+    {
+        "name": "Central African Republic",
+        "iso": "cf",
+        "dial": "+236"
+    },
+    {
+        "name": "Chad",
+        "iso": "td",
+        "dial": "+235"
+    },
+    {
+        "name": "Chile",
+        "iso": "cl",
+        "dial": "+56"
+    },
+    {
+        "name": "China",
+        "iso": "cn",
+        "dial": "+86"
+    },
+    {
+        "name": "Christmas Island",
+        "iso": "cx",
+        "dial": "+61"
+    },
+    {
+        "name": "Cocos (Keeling) Islands",
+        "iso": "cc",
+        "dial": "+61"
+    },
+    {
+        "name": "Colombia",
+        "iso": "co",
+        "dial": "+57"
+    },
+    {
+        "name": "Comoros",
+        "iso": "km",
+        "dial": "+269"
+    },
+    {
+        "name": "Congo",
+        "iso": "cg",
+        "dial": "+242"
+    },
+    {
+        "name": "Cook Islands",
+        "iso": "ck",
+        "dial": "+682"
+    },
+    {
+        "name": "Costa Rica",
+        "iso": "cr",
+        "dial": "+506"
+    },
+    {
+        "name": "Croatia",
+        "iso": "hr",
+        "dial": "+385"
+    },
+    {
+        "name": "Cuba",
+        "iso": "cu",
+        "dial": "+53"
+    },
+    {
+        "name": "Curaçao",
+        "iso": "cw",
+        "dial": "+599"
+    },
+    {
+        "name": "Cyprus",
+        "iso": "cy",
+        "dial": "+357"
+    },
+    {
+        "name": "Czechia",
+        "iso": "cz",
+        "dial": "+420"
+    },
+    {
+        "name": "Democratic Republic of the Congo",
+        "iso": "cd",
+        "dial": "+243"
+    },
+    {
+        "name": "Denmark",
+        "iso": "dk",
+        "dial": "+45"
+    },
+    {
+        "name": "Djibouti",
+        "iso": "dj",
+        "dial": "+253"
+    },
+    {
+        "name": "Dominica",
+        "iso": "dm",
+        "dial": "+1"
+    },
+    {
+        "name": "Dominican Republic",
+        "iso": "do",
+        "dial": "+1"
+    },
+    {
+        "name": "Ecuador",
+        "iso": "ec",
+        "dial": "+593"
+    },
+    {
+        "name": "Egypt",
+        "iso": "eg",
+        "dial": "+20"
+    },
+    {
+        "name": "El Salvador",
+        "iso": "sv",
+        "dial": "+503"
+    },
+    {
+        "name": "Equatorial Guinea",
+        "iso": "gq",
+        "dial": "+240"
+    },
+    {
+        "name": "Eritrea",
+        "iso": "er",
+        "dial": "+291"
+    },
+    {
+        "name": "Estonia",
+        "iso": "ee",
+        "dial": "+372"
+    },
+    {
+        "name": "Eswatini",
+        "iso": "sz",
+        "dial": "+268"
+    },
+    {
+        "name": "Ethiopia",
+        "iso": "et",
+        "dial": "+251"
+    },
+    {
+        "name": "Falkland Islands",
+        "iso": "fk",
+        "dial": "+500"
+    },
+    {
+        "name": "Faroe Islands",
+        "iso": "fo",
+        "dial": "+298"
+    },
+    {
+        "name": "Fiji",
+        "iso": "fj",
+        "dial": "+679"
+    },
+    {
+        "name": "Finland",
+        "iso": "fi",
+        "dial": "+358"
+    },
+    {
+        "name": "France",
+        "iso": "fr",
+        "dial": "+33"
+    },
+    {
+        "name": "French Guiana",
+        "iso": "gf",
+        "dial": "+594"
+    },
+    {
+        "name": "French Polynesia",
+        "iso": "pf",
+        "dial": "+689"
+    },
+    {
+        "name": "French Southern Territories",
+        "iso": "tf",
+        "dial": "+262"
+    },
+    {
+        "name": "Gabon",
+        "iso": "ga",
+        "dial": "+241"
+    },
+    {
+        "name": "Gambia",
+        "iso": "gm",
+        "dial": "+220"
+    },
+    {
+        "name": "Georgia",
+        "iso": "ge",
+        "dial": "+995"
+    },
+    {
+        "name": "Germany",
+        "iso": "de",
+        "dial": "+49"
+    },
+    {
+        "name": "Ghana",
+        "iso": "gh",
+        "dial": "+233"
+    },
+    {
+        "name": "Gibraltar",
+        "iso": "gi",
+        "dial": "+350"
+    },
+    {
+        "name": "Greece",
+        "iso": "gr",
+        "dial": "+30"
+    },
+    {
+        "name": "Greenland",
+        "iso": "gl",
+        "dial": "+299"
+    },
+    {
+        "name": "Grenada",
+        "iso": "gd",
+        "dial": "+1"
+    },
+    {
+        "name": "Guadeloupe",
+        "iso": "gp",
+        "dial": "+590"
+    },
+    {
+        "name": "Guam",
+        "iso": "gu",
+        "dial": "+1"
+    },
+    {
+        "name": "Guatemala",
+        "iso": "gt",
+        "dial": "+502"
+    },
+    {
+        "name": "Guernsey",
+        "iso": "gg",
+        "dial": "+44"
+    },
+    {
+        "name": "Guinea",
+        "iso": "gn",
+        "dial": "+224"
+    },
+    {
+        "name": "Guinea-Bissau",
+        "iso": "gw",
+        "dial": "+245"
+    },
+    {
+        "name": "Guyana",
+        "iso": "gy",
+        "dial": "+592"
+    },
+    {
+        "name": "Haiti",
+        "iso": "ht",
+        "dial": "+509"
+    },
+    {
+        "name": "Honduras",
+        "iso": "hn",
+        "dial": "+504"
+    },
+    {
+        "name": "Hong Kong",
+        "iso": "hk",
+        "dial": "+852"
+    },
+    {
+        "name": "Hungary",
+        "iso": "hu",
+        "dial": "+36"
+    },
+    {
+        "name": "Iceland",
+        "iso": "is",
+        "dial": "+354"
+    },
+    {
+        "name": "India",
+        "iso": "in",
+        "dial": "+91"
+    },
+    {
+        "name": "Indonesia",
+        "iso": "id",
+        "dial": "+62"
+    },
+    {
+        "name": "Iran",
+        "iso": "ir",
+        "dial": "+98"
+    },
+    {
+        "name": "Iraq",
+        "iso": "iq",
+        "dial": "+964"
+    },
+    {
+        "name": "Ireland",
+        "iso": "ie",
+        "dial": "+353"
+    },
+    {
+        "name": "Isle of Man",
+        "iso": "im",
+        "dial": "+44"
+    },
+    {
+        "name": "Israel",
+        "iso": "il",
+        "dial": "+972"
+    },
+    {
+        "name": "Italy",
+        "iso": "it",
+        "dial": "+39"
+    },
+    {
+        "name": "Ivory Coast",
+        "iso": "ci",
+        "dial": "+225"
+    },
+    {
+        "name": "Jamaica",
+        "iso": "jm",
+        "dial": "+1"
+    },
+    {
+        "name": "Japan",
+        "iso": "jp",
+        "dial": "+81"
+    },
+    {
+        "name": "Jersey",
+        "iso": "je",
+        "dial": "+44"
+    },
+    {
+        "name": "Jordan",
+        "iso": "jo",
+        "dial": "+962"
+    },
+    {
+        "name": "Kazakhstan",
+        "iso": "kz",
+        "dial": "+7"
+    },
+    {
+        "name": "Kenya",
+        "iso": "ke",
+        "dial": "+254"
+    },
+    {
+        "name": "Kiribati",
+        "iso": "ki",
+        "dial": "+686"
+    },
+    {
+        "name": "Kosovo",
+        "iso": "xk",
+        "dial": "+383"
+    },
+    {
+        "name": "Kuwait",
+        "iso": "kw",
+        "dial": "+965"
+    },
+    {
+        "name": "Kyrgyzstan",
+        "iso": "kg",
+        "dial": "+996"
+    },
+    {
+        "name": "Laos",
+        "iso": "la",
+        "dial": "+856"
+    },
+    {
+        "name": "Latvia",
+        "iso": "lv",
+        "dial": "+371"
+    },
+    {
+        "name": "Lebanon",
+        "iso": "lb",
+        "dial": "+961"
+    },
+    {
+        "name": "Lesotho",
+        "iso": "ls",
+        "dial": "+266"
+    },
+    {
+        "name": "Liberia",
+        "iso": "lr",
+        "dial": "+231"
+    },
+    {
+        "name": "Libya",
+        "iso": "ly",
+        "dial": "+218"
+    },
+    {
+        "name": "Liechtenstein",
+        "iso": "li",
+        "dial": "+423"
+    },
+    {
+        "name": "Lithuania",
+        "iso": "lt",
+        "dial": "+370"
+    },
+    {
+        "name": "Luxembourg",
+        "iso": "lu",
+        "dial": "+352"
+    },
+    {
+        "name": "Macao",
+        "iso": "mo",
+        "dial": "+853"
+    },
+    {
+        "name": "Madagascar",
+        "iso": "mg",
+        "dial": "+261"
+    },
+    {
+        "name": "Malawi",
+        "iso": "mw",
+        "dial": "+265"
+    },
+    {
+        "name": "Malaysia",
+        "iso": "my",
+        "dial": "+60"
+    },
+    {
+        "name": "Maldives",
+        "iso": "mv",
+        "dial": "+960"
+    },
+    {
+        "name": "Mali",
+        "iso": "ml",
+        "dial": "+223"
+    },
+    {
+        "name": "Malta",
+        "iso": "mt",
+        "dial": "+356"
+    },
+    {
+        "name": "Marshall Islands",
+        "iso": "mh",
+        "dial": "+692"
+    },
+    {
+        "name": "Martinique",
+        "iso": "mq",
+        "dial": "+596"
+    },
+    {
+        "name": "Mauritania",
+        "iso": "mr",
+        "dial": "+222"
+    },
+    {
+        "name": "Mauritius",
+        "iso": "mu",
+        "dial": "+230"
+    },
+    {
+        "name": "Mayotte",
+        "iso": "yt",
+        "dial": "+262"
+    },
+    {
+        "name": "Mexico",
+        "iso": "mx",
+        "dial": "+52"
+    },
+    {
+        "name": "Micronesia",
+        "iso": "fm",
+        "dial": "+691"
+    },
+    {
+        "name": "Moldova",
+        "iso": "md",
+        "dial": "+373"
+    },
+    {
+        "name": "Monaco",
+        "iso": "mc",
+        "dial": "+377"
+    },
+    {
+        "name": "Mongolia",
+        "iso": "mn",
+        "dial": "+976"
+    },
+    {
+        "name": "Montenegro",
+        "iso": "me",
+        "dial": "+382"
+    },
+    {
+        "name": "Montserrat",
+        "iso": "ms",
+        "dial": "+1"
+    },
+    {
+        "name": "Morocco",
+        "iso": "ma",
+        "dial": "+212"
+    },
+    {
+        "name": "Mozambique",
+        "iso": "mz",
+        "dial": "+258"
+    },
+    {
+        "name": "Myanmar",
+        "iso": "mm",
+        "dial": "+95"
+    },
+    {
+        "name": "Namibia",
+        "iso": "na",
+        "dial": "+264"
+    },
+    {
+        "name": "Nauru",
+        "iso": "nr",
+        "dial": "+674"
+    },
+    {
+        "name": "Nepal",
+        "iso": "np",
+        "dial": "+977"
+    },
+    {
+        "name": "Netherlands",
+        "iso": "nl",
+        "dial": "+31"
+    },
+    {
+        "name": "New Caledonia",
+        "iso": "nc",
+        "dial": "+687"
+    },
+    {
+        "name": "New Zealand",
+        "iso": "nz",
+        "dial": "+64"
+    },
+    {
+        "name": "Nicaragua",
+        "iso": "ni",
+        "dial": "+505"
+    },
+    {
+        "name": "Niger",
+        "iso": "ne",
+        "dial": "+227"
+    },
+    {
+        "name": "Nigeria",
+        "iso": "ng",
+        "dial": "+234"
+    },
+    {
+        "name": "Niue",
+        "iso": "nu",
+        "dial": "+683"
+    },
+    {
+        "name": "Norfolk Island",
+        "iso": "nf",
+        "dial": "+672"
+    },
+    {
+        "name": "North Korea",
+        "iso": "kp",
+        "dial": "+850"
+    },
+    {
+        "name": "North Macedonia",
+        "iso": "mk",
+        "dial": "+389"
+    },
+    {
+        "name": "Northern Mariana Islands",
+        "iso": "mp",
+        "dial": "+1"
+    },
+    {
+        "name": "Norway",
+        "iso": "no",
+        "dial": "+47"
+    },
+    {
+        "name": "Oman",
+        "iso": "om",
+        "dial": "+968"
+    },
+    {
+        "name": "Pakistan",
+        "iso": "pk",
+        "dial": "+92"
+    },
+    {
+        "name": "Palau",
+        "iso": "pw",
+        "dial": "+680"
+    },
+    {
+        "name": "Palestine",
+        "iso": "ps",
+        "dial": "+970"
+    },
+    {
+        "name": "Panama",
+        "iso": "pa",
+        "dial": "+507"
+    },
+    {
+        "name": "Papua New Guinea",
+        "iso": "pg",
+        "dial": "+675"
+    },
+    {
+        "name": "Paraguay",
+        "iso": "py",
+        "dial": "+595"
+    },
+    {
+        "name": "Peru",
+        "iso": "pe",
+        "dial": "+51"
+    },
+    {
+        "name": "Philippines",
+        "iso": "ph",
+        "dial": "+63"
+    },
+    {
+        "name": "Pitcairn",
+        "iso": "pn",
+        "dial": "+64"
+    },
+    {
+        "name": "Poland",
+        "iso": "pl",
+        "dial": "+48"
+    },
+    {
+        "name": "Portugal",
+        "iso": "pt",
+        "dial": "+351"
+    },
+    {
+        "name": "Puerto Rico",
+        "iso": "pr",
+        "dial": "+1"
+    },
+    {
+        "name": "Qatar",
+        "iso": "qa",
+        "dial": "+974"
+    },
+    {
+        "name": "Réunion",
+        "iso": "re",
+        "dial": "+262"
+    },
+    {
+        "name": "Romania",
+        "iso": "ro",
+        "dial": "+40"
+    },
+    {
+        "name": "Russia",
+        "iso": "ru",
+        "dial": "+7"
+    },
+    {
+        "name": "Rwanda",
+        "iso": "rw",
+        "dial": "+250"
+    },
+    {
+        "name": "Saint Barthélemy",
+        "iso": "bl",
+        "dial": "+590"
+    },
+    {
+        "name": "Saint Helena",
+        "iso": "sh",
+        "dial": "+290"
+    },
+    {
+        "name": "Saint Kitts and Nevis",
+        "iso": "kn",
+        "dial": "+1"
+    },
+    {
+        "name": "Saint Lucia",
+        "iso": "lc",
+        "dial": "+1"
+    },
+    {
+        "name": "Saint Martin",
+        "iso": "mf",
+        "dial": "+590"
+    },
+    {
+        "name": "Saint Pierre and Miquelon",
+        "iso": "pm",
+        "dial": "+508"
+    },
+    {
+        "name": "Saint Vincent and the Grenadines",
+        "iso": "vc",
+        "dial": "+1"
+    },
+    {
+        "name": "Samoa",
+        "iso": "ws",
+        "dial": "+685"
+    },
+    {
+        "name": "San Marino",
+        "iso": "sm",
+        "dial": "+378"
+    },
+    {
+        "name": "São Tomé and Príncipe",
+        "iso": "st",
+        "dial": "+239"
+    },
+    {
+        "name": "Saudi Arabia",
+        "iso": "sa",
+        "dial": "+966"
+    },
+    {
+        "name": "Senegal",
+        "iso": "sn",
+        "dial": "+221"
+    },
+    {
+        "name": "Serbia",
+        "iso": "rs",
+        "dial": "+381"
+    },
+    {
+        "name": "Seychelles",
+        "iso": "sc",
+        "dial": "+248"
+    },
+    {
+        "name": "Sierra Leone",
+        "iso": "sl",
+        "dial": "+232"
+    },
+    {
+        "name": "Singapore",
+        "iso": "sg",
+        "dial": "+65"
+    },
+    {
+        "name": "Sint Maarten",
+        "iso": "sx",
+        "dial": "+1"
+    },
+    {
+        "name": "Slovakia",
+        "iso": "sk",
+        "dial": "+421"
+    },
+    {
+        "name": "Slovenia",
+        "iso": "si",
+        "dial": "+386"
+    },
+    {
+        "name": "Solomon Islands",
+        "iso": "sb",
+        "dial": "+677"
+    },
+    {
+        "name": "Somalia",
+        "iso": "so",
+        "dial": "+252"
+    },
+    {
+        "name": "South Africa",
+        "iso": "za",
+        "dial": "+27"
+    },
+    {
+        "name": "South Georgia and the South Sandwich Islands",
+        "iso": "gs",
+        "dial": "+500"
+    },
+    {
+        "name": "South Korea",
+        "iso": "kr",
+        "dial": "+82"
+    },
+    {
+        "name": "South Sudan",
+        "iso": "ss",
+        "dial": "+211"
+    },
+    {
+        "name": "Spain",
+        "iso": "es",
+        "dial": "+34"
+    },
+    {
+        "name": "Sri Lanka",
+        "iso": "lk",
+        "dial": "+94"
+    },
+    {
+        "name": "Sudan",
+        "iso": "sd",
+        "dial": "+249"
+    },
+    {
+        "name": "Suriname",
+        "iso": "sr",
+        "dial": "+597"
+    },
+    {
+        "name": "Svalbard and Jan Mayen",
+        "iso": "sj",
+        "dial": "+47"
+    },
+    {
+        "name": "Sweden",
+        "iso": "se",
+        "dial": "+46"
+    },
+    {
+        "name": "Switzerland",
+        "iso": "ch",
+        "dial": "+41"
+    },
+    {
+        "name": "Syria",
+        "iso": "sy",
+        "dial": "+963"
+    },
+    {
+        "name": "Taiwan",
+        "iso": "tw",
+        "dial": "+886"
+    },
+    {
+        "name": "Tajikistan",
+        "iso": "tj",
+        "dial": "+992"
+    },
+    {
+        "name": "Tanzania",
+        "iso": "tz",
+        "dial": "+255"
+    },
+    {
+        "name": "Thailand",
+        "iso": "th",
+        "dial": "+66"
+    },
+    {
+        "name": "Timor-Leste",
+        "iso": "tl",
+        "dial": "+670"
+    },
+    {
+        "name": "Togo",
+        "iso": "tg",
+        "dial": "+228"
+    },
+    {
+        "name": "Tokelau",
+        "iso": "tk",
+        "dial": "+690"
+    },
+    {
+        "name": "Tonga",
+        "iso": "to",
+        "dial": "+676"
+    },
+    {
+        "name": "Trinidad and Tobago",
+        "iso": "tt",
+        "dial": "+1"
+    },
+    {
+        "name": "Tunisia",
+        "iso": "tn",
+        "dial": "+216"
+    },
+    {
+        "name": "Türkiye",
+        "iso": "tr",
+        "dial": "+90"
+    },
+    {
+        "name": "Turkmenistan",
+        "iso": "tm",
+        "dial": "+993"
+    },
+    {
+        "name": "Turks and Caicos Islands",
+        "iso": "tc",
+        "dial": "+1"
+    },
+    {
+        "name": "Tuvalu",
+        "iso": "tv",
+        "dial": "+688"
+    },
+    {
+        "name": "Uganda",
+        "iso": "ug",
+        "dial": "+256"
+    },
+    {
+        "name": "Ukraine",
+        "iso": "ua",
+        "dial": "+380"
+    },
+    {
+        "name": "United Arab Emirates",
+        "iso": "ae",
+        "dial": "+971"
+    },
+    {
+        "name": "United Kingdom",
+        "iso": "gb",
+        "dial": "+44"
+    },
+    {
+        "name": "United States",
+        "iso": "us",
+        "dial": "+1"
+    },
+    {
+        "name": "United States Virgin Islands",
+        "iso": "vi",
+        "dial": "+1"
+    },
+    {
+        "name": "Uruguay",
+        "iso": "uy",
+        "dial": "+598"
+    },
+    {
+        "name": "Uzbekistan",
+        "iso": "uz",
+        "dial": "+998"
+    },
+    {
+        "name": "Vanuatu",
+        "iso": "vu",
+        "dial": "+678"
+    },
+    {
+        "name": "Vatican City",
+        "iso": "va",
+        "dial": "+39"
+    },
+    {
+        "name": "Venezuela",
+        "iso": "ve",
+        "dial": "+58"
+    },
+    {
+        "name": "Vietnam",
+        "iso": "vn",
+        "dial": "+84"
+    },
+    {
+        "name": "Wallis and Futuna",
+        "iso": "wf",
+        "dial": "+681"
+    },
+    {
+        "name": "Western Sahara",
+        "iso": "eh",
+        "dial": "+212"
+    },
+    {
+        "name": "Yemen",
+        "iso": "ye",
+        "dial": "+967"
+    },
+    {
+        "name": "Zambia",
+        "iso": "zm",
+        "dial": "+260"
+    },
+    {
+        "name": "Zimbabwe",
+        "iso": "zw",
+        "dial": "+263"
     }
-}
+];
 
-// Contact form country dropdown
-function toggleContactDropdown() {
-    var dropdown = document.getElementById('contactDropdown');
-    var isOpen = dropdown.style.display === 'block';
-    // Close all dropdowns first
-    document.querySelectorAll('.country-dropdown').forEach(function(d) {
-        d.style.display = 'none';
-    });
-    dropdown.style.display = isOpen ? 'none' : 'block';
-}
+        function buildCountryOptions(dropdownId, selectFunctionName) {
+            var dropdown = document.getElementById(dropdownId);
+            if (!dropdown) return;
 
-function selectContactCountry(code, flagUrl, countryCode) {
-    var trigger = document.querySelector('#contactCountrySelect .country-trigger');
-    trigger.innerHTML = '<img src="' + flagUrl + '" alt="' + countryCode + '" class="flag-img" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> <span class="country-code-text">' + code + '</span><span style="margin-left:auto;font-size:0.7rem;">▼</span>';
-    document.getElementById('contactCountryCode').value = code;
-    document.getElementById('contactDropdown').style.display = 'none';
-}
+            dropdown.innerHTML = '';
+            countryCodes.forEach(function(country) {
+                var option = document.createElement('div');
+                option.className = 'country-option';
+                option.style.cssText = 'padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;';
+                option.innerHTML = '<img src="https://flagcdn.com/w20/' + country.iso + '.png" alt="' + country.iso.toUpperCase() + '" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> <span>' + country.name + ' ' + country.dial + '</span>';
+                option.addEventListener('click', function() {
+                    window[selectFunctionName](country.dial, 'https://flagcdn.com/w20/' + country.iso + '.png', country.iso.toUpperCase());
+                });
+                dropdown.appendChild(option);
+            });
+        }
 
-// Subscription form applicant country dropdown
-function toggleSubDropdown() {
-    var dropdown = document.getElementById('subDropdown');
-    var isOpen = dropdown.style.display === 'block';
-    document.querySelectorAll('.country-dropdown').forEach(function(d) {
-        d.style.display = 'none';
-    });
-    dropdown.style.display = isOpen ? 'none' : 'block';
-}
+        function toggleCountryDropdown(dropdownId) {
+            var dropdown = document.getElementById(dropdownId);
+            if (!dropdown) return;
+            var isOpen = dropdown.style.display === 'block';
+            document.querySelectorAll('.country-dropdown').forEach(function(d) {
+                d.style.display = 'none';
+            });
+            dropdown.style.display = isOpen ? 'none' : 'block';
+        }
 
-function selectSubCountry(code, flagUrl, countryCode) {
-    var trigger = document.querySelector('#subCountrySelect .country-trigger');
-    trigger.innerHTML = '<img src="' + flagUrl + '" alt="' + countryCode + '" class="flag-img" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> <span class="country-code-text">' + code + '</span><span style="margin-left:auto;font-size:0.7rem;">▼</span>';
-    document.getElementById('subCountryCode').value = code;
-    document.getElementById('subDropdown').style.display = 'none';
-}
+        function updateCountryTrigger(selectId, dropdownId, hiddenId, code, flagUrl, countryCode) {
+            var trigger = document.querySelector('#' + selectId + ' .country-trigger');
+            if (trigger) {
+                trigger.innerHTML = '<img src="' + flagUrl + '" alt="' + countryCode + '" class="flag-img" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> <span class="country-code-text">' + code + '</span><span style="margin-left:auto;font-size:0.7rem;">▼</span>';
+            }
+            document.getElementById(hiddenId).value = code;
+            document.getElementById(dropdownId).style.display = 'none';
+        }
 
-// Subscription form NOK country dropdown
-function toggleNokDropdown() {
-    var dropdown = document.getElementById('nokDropdown');
-    var isOpen = dropdown.style.display === 'block';
-    document.querySelectorAll('.country-dropdown').forEach(function(d) {
-        d.style.display = 'none';
-    });
-    dropdown.style.display = isOpen ? 'none' : 'block';
-}
+        function toggleContactDropdown() { toggleCountryDropdown('contactDropdown'); }
+        function selectContactCountry(code, flagUrl, countryCode) { updateCountryTrigger('contactCountrySelect', 'contactDropdown', 'contactCountryCode', code, flagUrl, countryCode); }
 
-function selectNokCountry(code, flagUrl, countryCode) {
-    var trigger = document.querySelector('#nokCountrySelect .country-trigger');
-    trigger.innerHTML = '<img src="' + flagUrl + '" alt="' + countryCode + '" class="flag-img" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> <span class="country-code-text">' + code + '</span><span style="margin-left:auto;font-size:0.7rem;">▼</span>';
-    document.getElementById('nokCountryCode').value = code;
-    document.getElementById('nokDropdown').style.display = 'none';
-}
+        document.addEventListener('DOMContentLoaded', function() {
+            buildCountryOptions('contactDropdown', 'selectContactCountry');
 
-// Hero background slideshow
-document.addEventListener('DOMContentLoaded', function() {
-    // Strip target="_blank" from all links on page load
-    document.querySelectorAll('a[target="_blank"]').forEach(function(link) {
-        link.removeAttribute('target');
-    });
-    var slides = document.querySelectorAll('.hero-bg-slide');
-    
-    if (slides.length === 0) {
-        console.error('No hero slides found!');
-        return;
-    }
-    
-    var current = 0;
-    setInterval(function() {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-    }, 5000);
-});
+            var slides = document.querySelectorAll('.hero-bg-slide');
+            if (slides.length === 0) {
+                console.error('No hero slides found!');
+                return;
+            }
+
+            var current = 0;
+            setInterval(function() {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 5000);
+        });
     </script>
-
-    <div id="subscriptionModal" class="modal-overlay">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeForm()">×</span>
-        
-        <div class="form-header">
-            <h2>Subscription Form</h2>
-            <p>Please fill out all required fields to initiate your property purchase.</p>
-        </div>
-
-        <form action="https://formspree.io/f/mbdepyky" method="POST">
-            
-            <div class="form-section-title">Personal Information</div>
-            <div class="form-grid">
-                <div class="form-group"><label>Title</label><select name="Title" required><option value="">Select...</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option><option value="Miss">Miss</option><option value="Dr">Dr</option><option value="Chief">Chief</option></select></div>
-                <div class="form-group"><label>Marital Status</label><select name="Marital Status" required><option value="">Select...</option><option value="Single">Single</option><option value="Married">Married</option></select></div>
-                <div class="form-group"><label>Surname</label><input type="text" name="Surname" required></div>
-                <div class="form-group"><label>Other Names</label><input type="text" name="Other Names" required></div>
-                <div class="form-group"><label>Date of Birth</label><input type="date" name="Date of Birth" required></div>
-                <div class="form-group"><label>Nationality</label><input type="text" name="Nationality" required></div>
-                <div class="form-group"><label>Occupation</label><input type="text" name="Occupation"></div>
-                <div class="form-group"><label>Employer's Name</label><input type="text" name="Employer"></div>
-                <div class="form-group form-full"><label>Residential Address</label><input type="text" name="Residential Address" required></div>
-                <div class="form-group form-full"><label>Mailing Address</label><input type="text" name="Mailing Address"></div>
-                <div class="form-group"><label>Email Address</label><input type="email" name="Email" required></div>
-                <div class="form-group"><label>Phone Number(s)</label>
-                            <div class="phone-input-wrapper" style="display:flex;gap:0.5rem;">
-                                <div class="custom-country-select" style="position:relative;width:110px;flex-shrink:0;" id="subCountrySelect">
-                                    <div class="country-trigger" style="padding:0.8rem;border-radius:6px;border:1px solid #d0e0d0;background:#f9fbf9;color:#0a1f0a;font-family:'Inter',sans-serif;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:0.3rem;" onclick="toggleSubDropdown()">
-                                        <img src="https://flagcdn.com/w20/ng.png" alt="NG" class="flag-img" style="width:20px;height:14px;object-fit:cover;border-radius:2px;">
-                                        <span class="country-code-text">+234</span>
-                                        <span style="margin-left:auto;font-size:0.7rem;">▼</span>
-                                    </div>
-                                    <input type="hidden" name="country_code" value="+234" id="subCountryCode">
-                                    <div class="country-dropdown" id="subDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:200px;overflow-y:auto;background:#ffffff;border:1px solid #d0e0d0;border-radius:6px;z-index:100;margin-top:4px;">
-                                        <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectSubCountry('+234', 'https://flagcdn.com/w20/ng.png', 'NG')">
-                                            <img src="https://flagcdn.com/w20/ng.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +234
-                                        </div>
-                                        <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectSubCountry('+1', 'https://flagcdn.com/w20/us.png', 'US')">
-                                            <img src="https://flagcdn.com/w20/us.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +1
-                                        </div>
-                                        <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectSubCountry('+44', 'https://flagcdn.com/w20/gb.png', 'GB')">
-                                            <img src="https://flagcdn.com/w20/gb.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +44
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="tel" name="Phone Number" placeholder="Enter phone number" style="flex:1;padding:0.8rem;border-radius:6px;border:1px solid #d0e0d0;background:#f9fbf9;color:#0a1f0a;font-family:'Inter',sans-serif;font-size:0.9rem;" required>
-                            </div>
-                        </div>
-                <div class="form-group"><label>Means of ID</label><select name="ID Type" required><option value="">Select...</option><option value="National ID">National ID</option><option value="Drivers License">Driver's License</option><option value="Voters Card">Voter's Card</option><option value="International Passport">International Passport</option></select></div>
-                <div class="form-group"><label>ID Number</label><input type="text" name="ID Number" required></div>
-            </div>
-
-            <div class="form-section-title">Next of Kin Information</div>
-            <div class="form-grid">
-                <div class="form-group"><label>Full Name</label><input type="text" name="NOK Name" required></div>
-                <div class="form-group"><label>Relationship</label><input type="text" name="NOK Relationship" required></div>
-                <div class="form-group"><label>Phone Number</label>
-                            <div class="phone-input-wrapper" style="display:flex;gap:0.5rem;">
-                                <div class="custom-country-select" style="position:relative;width:110px;flex-shrink:0;" id="nokCountrySelect">
-                                    <div class="country-trigger" style="padding:0.8rem;border-radius:6px;border:1px solid #d0e0d0;background:#f9fbf9;color:#0a1f0a;font-family:'Inter',sans-serif;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:0.3rem;" onclick="toggleNokDropdown()">
-                                        <img src="https://flagcdn.com/w20/ng.png" alt="NG" class="flag-img" style="width:20px;height:14px;object-fit:cover;border-radius:2px;">
-                                        <span class="country-code-text">+234</span>
-                                        <span style="margin-left:auto;font-size:0.7rem;">▼</span>
-                                    </div>
-                                    <input type="hidden" name="nok_country_code" value="+234" id="nokCountryCode">
-                                    <div class="country-dropdown" id="nokDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:200px;overflow-y:auto;background:#ffffff;border:1px solid #d0e0d0;border-radius:6px;z-index:100;margin-top:4px;">
-                                        <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectNokCountry('+234', 'https://flagcdn.com/w20/ng.png', 'NG')">
-                                            <img src="https://flagcdn.com/w20/ng.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +234
-                                        </div>
-                                        <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectNokCountry('+1', 'https://flagcdn.com/w20/us.png', 'US')">
-                                            <img src="https://flagcdn.com/w20/us.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +1
-                                        </div>
-                                        <div class="country-option" style="padding:0.5rem 0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#0a1f0a;" onclick="selectNokCountry('+44', 'https://flagcdn.com/w20/gb.png', 'GB')">
-                                            <img src="https://flagcdn.com/w20/gb.png" style="width:20px;height:14px;object-fit:cover;border-radius:2px;"> +44
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="tel" name="Phone Number" placeholder="Enter phone number" style="flex:1;padding:0.8rem;border-radius:6px;border:1px solid #d0e0d0;background:#f9fbf9;color:#0a1f0a;font-family:'Inter',sans-serif;font-size:0.9rem;" required>
-                            </div>
-                        </div>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit Application</button>
-            <p class="declaration">By submitting this form, you affirm that the details provided are accurate and that you are initiating a secure property application process.</p>
-        </form>
-    </div>
-</div>
 </body>
 </html>

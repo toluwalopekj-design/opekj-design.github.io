@@ -398,6 +398,150 @@
         .about-content p { color: #ffffff; margin-bottom: 1rem; font-size: 1rem; }
         .about-img img { width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
 
+
+        /* About Slider */
+        .about-slider {
+            position: relative;
+            height: 360px;
+            min-height: 360px;
+            overflow: hidden;
+        }
+
+        .about-slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease, visibility 0.55s ease;
+            padding-right: 1rem;
+        }
+
+        .about-slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .about-slide .tag {
+            margin-bottom: 0.9rem;
+        }
+
+        .about-slide h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            color: #ffffff;
+        }
+
+        .about-slide h2 span {
+            color: #c8f542;
+        }
+
+        .about-slide p {
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+            font-size: 1rem;
+            max-width: 620px;
+        }
+
+        .about-slider-controls {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+        }
+
+        .about-next {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(200,245,66,0.65);
+            border-radius: 50%;
+            background: transparent;
+            color: #c8f542;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .about-next:hover {
+            background: #c8f542;
+            color: #0a1f0a;
+            border-color: #c8f542;
+        }
+
+        .about-next span {
+            display: inline-block;
+            animation: aboutArrowNudge 1.5s ease-in-out infinite;
+        }
+
+        /* Each slide has its own contextual image, while the image frame stays fixed. */
+        .about-img {
+            position: relative;
+            height: 360px;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .about-image-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+
+        .about-image-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .about-image-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes aboutArrowNudge {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(4px); }
+        }
+
+        @media (max-width: 768px) {
+            .about-slider {
+                height: 390px;
+                min-height: 390px;
+            }
+
+            .about-img {
+                height: 300px;
+            }
+
+            .about-slider-controls {
+                right: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .about-slide,
+            .about-image-slide {
+                transition: none;
+            }
+
+            .about-next span {
+                animation: none;
+            }
+        }
+
         /* FAQ Preview */
         .faq-preview-grid {
             display: grid;
@@ -1058,14 +1202,43 @@
 
     <section class="section about" id="about">
         <div class="about-grid">
-            <div class="about-content">
-                <span class="tag">About Us</span>
-                <h2><span>YOUR TRUSTED PARTNER</span><br>IN REAL ESTATE</h2>
-                <p>Applause Property is a leading real estate company in Nigeria with offices in Lagos, Asaba, Aba, and Owerri. We specialize in connecting discerning buyers with premium properties that offer both comfort and long-term value.</p>
-                <p>Every property in our portfolio is thoroughly verified and comes with complete documentation.</p>
+            <div class="about-slider" id="aboutSlider" aria-live="polite">
+                <div class="about-slide active">
+                    <span class="tag">About Us</span>
+                    <h2><span>YOUR TRUSTED PARTNER</span><br>IN REAL ESTATE</h2>
+                    <p>Applause Property is a leading real estate company in Nigeria with offices in Lagos, Asaba, Aba, and Owerri. We specialize in connecting discerning buyers with premium properties that offer both comfort and long-term value.</p>
+                    <p>Every property in our portfolio is thoroughly verified and comes with complete documentation.</p>
+                </div>
+
+                <div class="about-slide">
+                    <span class="tag">Our Mission Statement</span>
+                    <h2><span>OUR MISSION STATEMENT</span></h2>
+                    <p>To make property purchases seamless whether you are a first-time investor or an experienced one.</p>
+                </div>
+
+                <div class="about-slide">
+                    <span class="tag">Our Vision</span>
+                    <h2><span>OUR VISION</span></h2>
+                    <p>At Applause Property, our vision is to lead the real estate industry with unwavering professionalism and love, cultivating a culture of profound gratitude while expertly guiding each client to their ideal home.</p>
+                </div>
+
+                <div class="about-slider-controls">
+                    <button class="about-next" id="aboutNext" type="button" aria-label="Show next About Us slide">
+                        <span aria-hidden="true">→</span>
+                    </button>
+                </div>
             </div>
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="About">
+
+            <div class="about-img" id="aboutImages" aria-hidden="true">
+                <div class="about-image-slide active">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" alt="Modern home representing Applause Property's real estate offering">
+                </div>
+                <div class="about-image-slide">
+                    <img src="https://raw.githubusercontent.com/toluwalopekj-design/opekj-design.github.io/main/family-spending-time-together-home.jpg" alt="Family enjoying time together at home">
+                </div>
+                <div class="about-image-slide">
+                    <img src="https://raw.githubusercontent.com/toluwalopekj-design/opekj-design.github.io/main/parents-kids-spending-time-together__2_.jpg" alt="Family enjoying life at home">
+                </div>
             </div>
         </div>
     </section>
@@ -2726,6 +2899,63 @@ if (!event.target.closest('.custom-country-select')) {
                 current = (current + 1) % slides.length;
                 slides[current].classList.add('active');
             }, 5000);
+
+            // About Us / Mission / Vision slider
+            var aboutSlides = document.querySelectorAll('.about-slide');
+            var aboutImages = document.querySelectorAll('.about-image-slide');
+            var aboutNext = document.getElementById('aboutNext');
+            var aboutSlider = document.getElementById('aboutSlider');
+            var aboutCurrent = 0;
+            var aboutTimer;
+
+            function showAboutSlide(index) {
+                if (!aboutSlides.length) return;
+
+                aboutSlides[aboutCurrent].classList.remove('active');
+                if (aboutImages.length) aboutImages[aboutCurrent].classList.remove('active');
+
+                aboutCurrent = (index + aboutSlides.length) % aboutSlides.length;
+                aboutSlides[aboutCurrent].classList.add('active');
+                if (aboutImages.length) aboutImages[aboutCurrent].classList.add('active');
+            }
+
+            function resetAboutTimer() {
+                clearInterval(aboutTimer);
+                aboutTimer = setInterval(function() {
+                    showAboutSlide(aboutCurrent + 1);
+                }, 15000);
+            }
+
+            if (aboutSlides.length && aboutNext) {
+                aboutNext.addEventListener('click', function() {
+                    showAboutSlide(aboutCurrent + 1);
+                    resetAboutTimer();
+                });
+
+                // Allow touch/swipe navigation on mobile.
+                var touchStartX = 0;
+                var touchEndX = 0;
+
+                aboutSlider.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                aboutSlider.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    var swipeDistance = touchEndX - touchStartX;
+
+                    if (Math.abs(swipeDistance) > 45) {
+                        if (swipeDistance < 0) {
+                            showAboutSlide(aboutCurrent + 1);
+                        } else {
+                            showAboutSlide(aboutCurrent - 1);
+                        }
+                        resetAboutTimer();
+                    }
+                }, { passive: true });
+
+                resetAboutTimer();
+            }
         });
     </script>
 </body>

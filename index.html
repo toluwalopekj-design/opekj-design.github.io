@@ -379,8 +379,39 @@
         .property-btn:hover { background: #0a1f0a; color: #ffffff; }
 
         /* About */
-        .about { background: #0a1f0a; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea; }
+        .about { background: #0a1f0a; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea; position: relative; overflow: hidden; }
+        .about-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .about-bg-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
+        .about-bg-slide.active {
+            opacity: 0.28;
+        }
+        .about-bg-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: rgba(10,31,10,0.6);
+        }
+        .about-section-header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
         .about-grid {
+            position: relative;
+            z-index: 2;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
@@ -424,10 +455,6 @@
             opacity: 1;
             visibility: visible;
             transform: translateX(0);
-        }
-
-        .about-slide .tag {
-            margin-bottom: 0.9rem;
         }
 
         .about-slide h2 {
@@ -1201,23 +1228,29 @@
     </section>
 
     <section class="section about" id="about">
+        <div class="about-bg" aria-hidden="true">
+            <div class="about-bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80')"></div>
+            <div class="about-bg-slide" style="background-image: url('https://raw.githubusercontent.com/toluwalopekj-design/opekj-design.github.io/main/family-spending-time-together-home.jpg')"></div>
+            <div class="about-bg-slide" style="background-image: url('https://raw.githubusercontent.com/toluwalopekj-design/opekj-design.github.io/main/parents-kids-spending-time-together__2_.jpg')"></div>
+        </div>
+        <div class="about-bg-overlay"></div>
+        <div class="about-section-header">
+            <span class="tag">About Us</span>
+        </div>
         <div class="about-grid">
             <div class="about-slider" id="aboutSlider" aria-live="polite">
                 <div class="about-slide active">
-                    <span class="tag">About Us</span>
                     <h2><span>YOUR TRUSTED PARTNER</span><br>IN REAL ESTATE</h2>
                     <p>Applause Property is a leading real estate company in Nigeria with offices in Lagos, Asaba, Aba, and Owerri. We specialize in connecting discerning buyers with premium properties that offer both comfort and long-term value.</p>
                     <p>Every property in our portfolio is thoroughly verified and comes with complete documentation.</p>
                 </div>
 
                 <div class="about-slide">
-                    <span class="tag">Our Mission Statement</span>
                     <h2><span>OUR MISSION STATEMENT</span></h2>
                     <p>To make property purchases seamless whether you are a first-time investor or an experienced one.</p>
                 </div>
 
                 <div class="about-slide">
-                    <span class="tag">Our Vision</span>
                     <h2><span>OUR VISION</span></h2>
                     <p>At Applause Property, our vision is to lead the real estate industry with unwavering professionalism and love, cultivating a culture of profound gratitude while expertly guiding each client to their ideal home.</p>
                 </div>
@@ -2903,6 +2936,7 @@ if (!event.target.closest('.custom-country-select')) {
             // About Us / Mission / Vision slider
             var aboutSlides = document.querySelectorAll('.about-slide');
             var aboutImages = document.querySelectorAll('.about-image-slide');
+            var aboutBgSlides = document.querySelectorAll('.about-bg-slide');
             var aboutNext = document.getElementById('aboutNext');
             var aboutSlider = document.getElementById('aboutSlider');
             var aboutCurrent = 0;
@@ -2913,10 +2947,12 @@ if (!event.target.closest('.custom-country-select')) {
 
                 aboutSlides[aboutCurrent].classList.remove('active');
                 if (aboutImages.length) aboutImages[aboutCurrent].classList.remove('active');
+                if (aboutBgSlides.length) aboutBgSlides[aboutCurrent].classList.remove('active');
 
                 aboutCurrent = (index + aboutSlides.length) % aboutSlides.length;
                 aboutSlides[aboutCurrent].classList.add('active');
                 if (aboutImages.length) aboutImages[aboutCurrent].classList.add('active');
+                if (aboutBgSlides.length) aboutBgSlides[aboutCurrent].classList.add('active');
             }
 
             function resetAboutTimer() {

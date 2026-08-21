@@ -913,6 +913,37 @@
         }
 
 
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Keep existing hover lifts working after scroll reveal */
+        .process-card.reveal.revealed:hover { transform: translateY(-8px); }
+        .property-card.reveal.revealed:hover { transform: translateY(-4px); }
+        .faq-preview-card.reveal.revealed:hover { transform: translateY(-4px); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 900px) {
             .faq-preview-grid { grid-template-columns: repeat(2, 1fr); }
@@ -984,23 +1015,23 @@
     </section>
 
     <section class="section process" id="process">
-        <div class="section-header">
+        <div class="section-header reveal">
             <span class="tag">How It Works</span>
             <h2>OUR BUYING PROCESS</h2>
             <p>Three simple steps to owning your dream property.</p>
         </div>
         <div class="process-grid">
-            <div class="process-card">
+            <div class="process-card reveal reveal-delay-1">
                 <div class="process-num">1</div>
                 <h3>BOOK INSPECTION</h3>
                 <p>Reach out via WhatsApp, Instagram, or our contact form to schedule.</p>
             </div>
-            <div class="process-card">
+            <div class="process-card reveal reveal-delay-2">
                 <div class="process-num">2</div>
                 <h3>SITE INSPECTION</h3>
                 <p>Visit the estate with our team for a complimentary guided tour.</p>
             </div>
-            <div class="process-card">
+            <div class="process-card reveal reveal-delay-3">
                 <div class="process-num">3</div>
                 <h3>MAKE PAYMENT</h3>
                 <p>Complete purchase with a secure payment and receive all documents.</p>
@@ -1009,13 +1040,13 @@
     </section>
 
     <section class="section" id="properties">
-        <div class="section-header">
+        <div class="section-header reveal">
             <span class="tag">Our Listings</span>
             <h2>FEATURED PROPERTIES</h2>
             <p>Premium estates with verified documentation.</p>
         </div>
         <div class="properties-grid">
-            <a href="estate-applause-court.html" class="property-card">
+            <a href="estate-applause-court.html" class="property-card reveal reveal-delay-1">
                 <div class="property-img">
                     <img src="assets/images/estates/applause court.png" alt="APPLAUSE COURT">
                     <span class="property-badge">C of O</span>
@@ -1034,7 +1065,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-ibusa-villa.html" class="property-card">
+            <a href="estate-ibusa-villa.html" class="property-card reveal reveal-delay-2">
                 <div class="property-img">
                     <img src="assets/images/estates/ibusa villa.png" alt="IBUSA VILLA">
                     <span class="property-badge">C of O</span>
@@ -1053,7 +1084,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-divine-city.html" class="property-card">
+            <a href="estate-divine-city.html" class="property-card reveal reveal-delay-3">
                 <div class="property-img">
                     <img src="assets/images/estates/divine city.png" alt="DIVINE CITY ESTATE">
                     <span class="property-badge">Survey</span>
@@ -1072,7 +1103,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-royal-city.html" class="property-card">
+            <a href="estate-royal-city.html" class="property-card reveal reveal-delay-1">
                 <div class="property-img">
                     <img src="assets/images/estates/royal city.png" alt="ROYAL CITY ESTATE">
                     <span class="property-badge">C of O</span>
@@ -1091,7 +1122,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-treasure-park.html" class="property-card">
+            <a href="estate-treasure-park.html" class="property-card reveal reveal-delay-2">
                 <div class="property-img">
                     <img src="assets/images/estates/treasure park.png" alt="TREASURE PARK">
                     <span class="property-badge">C of O</span>
@@ -1110,7 +1141,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-de-royal-court.html" class="property-card">
+            <a href="estate-de-royal-court.html" class="property-card reveal reveal-delay-3">
                 <div class="property-img">
                     <img src="assets/images/estates/de royal court.png" alt="DE ROYAL COURT">
                     <span class="property-badge">C of O</span>
@@ -1129,7 +1160,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-divine-hilltop.html" class="property-card">
+            <a href="estate-divine-hilltop.html" class="property-card reveal reveal-delay-1">
                 <div class="property-img">
                     <img src="assets/images/estates/divine hilltop.png" alt="DIVINE HILLTOP">
                     <span class="property-badge">Survey</span>
@@ -1148,7 +1179,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-divine-royal.html" class="property-card">
+            <a href="estate-divine-royal.html" class="property-card reveal reveal-delay-2">
                 <div class="property-img">
                     <img src="assets/images/estates/divine royal.png" alt="DIVINE ROYAL">
                     <span class="property-badge">C of O</span>
@@ -1167,7 +1198,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-amaeze.html" class="property-card">
+            <a href="estate-amaeze.html" class="property-card reveal reveal-delay-3">
                 <div class="property-img">
                     <img src="assets/images/estates/amaeze.png" alt="AMAEZE ESTATE">
                     <span class="property-badge">C of O</span>
@@ -1186,7 +1217,7 @@
                     </div>
                 </div>
             </a>
-            <a href="estate-ibusa-amaka.html" class="property-card">
+            <a href="estate-ibusa-amaka.html" class="property-card reveal reveal-delay-1">
                 <div class="property-img">
                     <img src="assets/images/estates/ibusa amaka.png" alt="IBUSA AMAKA ESTATE">
                     <span class="property-badge">C of O</span>
@@ -1205,7 +1236,7 @@
                     </div>
                 </div>
             </a>
-                       <a href="estate-applause-city.html" class="property-card">
+                       <a href="estate-applause-city.html" class="property-card reveal reveal-delay-2">
                 <div class="property-img">
                     <img src="assets/images/estates/applause city.png" alt="APPLAUSE CITY">
                     <span class="property-badge">Survey</span>
@@ -1234,10 +1265,10 @@
             <div class="about-bg-slide" style="background-image: url('https://raw.githubusercontent.com/toluwalopekj-design/opekj-design.github.io/main/parents-kids-spending-time-together__2_.jpg')"></div>
         </div>
         <div class="about-bg-overlay"></div>
-        <div class="about-section-header">
+        <div class="about-section-header reveal">
             <span class="tag">About Us</span>
         </div>
-        <div class="about-grid">
+        <div class="about-grid reveal">
             <div class="about-slider" id="aboutSlider" aria-live="polite">
                 <div class="about-slide active">
                     <h2><span>YOUR TRUSTED PARTNER</span><br>IN REAL ESTATE</h2>
@@ -1277,12 +1308,12 @@
     </section>
 
     <section class="section" id="contact">
-        <div class="section-header">
+        <div class="section-header reveal">
             <span class="tag">Get In Touch</span>
             <h2>BOOK AN INSPECTION</h2>
             <p>Ready to find your perfect property? Reach out to us.</p>
         </div>
-        <div class="contact-grid">
+        <div class="contact-grid reveal">
             <div class="contact-info">
                 <div class="contact-item">
                     <div class="icon">📍</div>
@@ -1598,7 +1629,7 @@
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer reveal">
         <a href="#home" class="logo">
 <img src="assets/images/favicon.png" alt="Applause Property Logo">        </a>
         <p class="reg-number">RC: 9035259</p>
@@ -2991,6 +3022,32 @@ if (!event.target.closest('.custom-country-select')) {
                 }, { passive: true });
 
                 resetAboutTimer();
+            }
+
+            // Scroll reveal: smoothly fade and lift content into view once.
+            var revealElements = document.querySelectorAll('.reveal');
+
+            if ('IntersectionObserver' in window) {
+                var revealObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                revealElements.forEach(function(element) {
+                    revealObserver.observe(element);
+                });
+            } else {
+                // Fallback for older browsers.
+                revealElements.forEach(function(element) {
+                    element.classList.add('revealed');
+                });
             }
         });
     </script>

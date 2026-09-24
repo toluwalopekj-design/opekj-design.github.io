@@ -355,6 +355,26 @@
             font-size: 0.85rem;
             margin-bottom: 1rem;
         }
+        .pdf-section {
+            grid-column: 1 / -1;
+            margin-top: 1rem;
+        }
+        .btn-pdf {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            background: #c8f542;
+            color: #0a1f0a;
+            text-align: center;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .btn-pdf:hover { background: #b3e639; transform: translateY(-2px); }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
@@ -406,7 +426,10 @@
         <div class="estate-detail-grid">
             <div class="estate-images">
                 <img src="assets/images/divine city.jpg" alt="Divine City Estate Flyer" class="flyer-img">
-            </div>
+                <div class="pdf-section">
+                   <a href="assets/pdfs/Divine-city-sub-form.pdf" class="btn-pdf">View / Download Subscription Form</a>
+               </div>
+	</div>
 
             <div class="estate-info-panel">
                 <div class="estate-price-box">

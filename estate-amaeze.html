@@ -355,12 +355,55 @@
             font-size: 0.85rem;
             margin-bottom: 1rem;
         }
+        .pdf-section {
+            grid-column: 1 / -1;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1a3d1a;
+        }
+        .pdf-section h3 {
+            font-size: 1.1rem;
+            color: #c8f542;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .pdf-viewer-wrapper {
+            width: 100%;
+            height: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #1a3d1a;
+            background: #0d260d;
+        }
+        .pdf-viewer-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .btn-pdf {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            background: #c8f542;
+            color: #0a1f0a;
+            text-align: center;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .btn-pdf:hover { background: #b3e639; transform: translateY(-2px); }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             .estate-detail-grid { grid-template-columns: 1fr; gap: 2rem; }
             .estate-images { grid-template-columns: 1fr; }
             .estate-images .flyer-img { grid-column: 1; }
+            .pdf-viewer-wrapper { height: 480px; }
             .estate-cta { flex-direction: column; }
         }
     </style>
@@ -406,6 +449,13 @@
         <div class="estate-detail-grid">
             <div class="estate-images">
                <img src="assets/images/amaeze.jpg" alt="Amaeze Estate Flyer" class="flyer-img">
+               <div class="pdf-section">
+                   <h3>Subscription Form</h3>
+                   <div class="pdf-viewer-wrapper">
+                       <iframe src="assets/pdfs/Amaeze%20sub%20form.pdf" title="Amaeze Estate Subscription Form PDF" loading="lazy"></iframe>
+                   </div>
+                   <a href="assets/pdfs/Amaeze%20sub%20form.pdf" target="_blank" rel="noopener" class="btn-pdf">View / Download Subscription Form</a>
+               </div>
             </div>
             <div class="estate-info-panel">
                 <div class="estate-price-box">
